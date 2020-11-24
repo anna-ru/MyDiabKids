@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beállítások"
+        android:layout_centerHorizontal="true"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="@dimen/text_size_normal"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        android:id="@+id/settings_txt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Értesítések beállítása"
+        android:layout_below="@id/settings_txt"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="17sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:textColor="?colorPrimary"
+        android:textStyle="bold"
+        android:id="@+id/notifications_txt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Téma megváltoztatása"
+        android:layout_below="@id/notifications_txt"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="17sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:textColor="?colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/theme_change_txt"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diababa"
+        android:layout_centerHorizontal="true"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="@dimen/text_size_normal"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        android:id="@+id/diababa_txt"
+        android:layout_below="@id/theme_change_txt"/>
+
+    <ImageView
+        android:layout_width="@dimen/image_view_width"
+        android:layout_height="@dimen/image_view_height"
+        android:src="@drawable/blood_smiling"
+        android:layout_below="@id/diababa_txt"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/diababa_img"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_modify"
+        android:background="@null"
+        android:layout_toRightOf="@id/diababa_txt"
+        android:layout_toEndOf="@id/diababa_txt"
+        android:layout_below="@id/theme_change_txt"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/modify_diababa"/>
+
+</RelativeLayout>

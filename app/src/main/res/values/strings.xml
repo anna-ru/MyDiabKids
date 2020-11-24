@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyDiabKids</string>
+    <string name="settings_txt">Beállítások</string>
+    <string name="profile_txt">Profilom</string>
+    <string name="values_txt">Értékeim</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Mentés</string>
+    <string name="cancel">Mégse</string>
+
+    <string name="sp_name">com.example.mydiabkids.NAME</string>
+    <string name="sp_birth_date">com.example.mydiabkids.BIRTH</string>
+    <string name="sp_diab_type">com.example.mydiabkids.DIAB</string>
+    <string name="sp_bolus">com.example.mydiabkids.BOLUS</string>
+    <string name="sp_basis">com.example.mydiabkids.BASIS</string>
+    <string name="sp_tools">com.example.mydiabkids.TOOLS</string>
+    <string name="sp_pname">com.example.mydiabkids.PNAME</string>
+    <string name="sp_pemail">com.example.mydiabkids.PEMAIL</string>
+    <string name="sp_ptel">com.example.mydiabkids.PTEL</string>
+    <string name="sp_dname">com.example.mydiabkids.DNAME</string>
+    <string name="sp_demail">com.example.mydiabkids.DEMAIL</string>
+    <string name="sp_dtel">com.example.mydiabkids.DTEL</string>
+    <string name="theme_shared_pref">com.example.mydiabkids.THEME</string>
+    <string name="dark_shared_pref">com.example.mydiabkids.DARK</string>
+
+    <string name="diabetes_type">Diabétesz típusa</string>
+    <string name="eeee_hh_nn">ÉÉÉÉ.HH.NN.</string>
+    <string name="nev">Név</string>
+    <string name="dots">...</string>
+    <string name="szuletesi_datum">Születési dátum:</string>
+    <string name="diabetes_type_">Diabétesz típusa:</string>
+    <string name="kezeles">Kezelés</string>
+    <string name="inzulin_tipusa">Inzulin típusa:</string>
+    <string name="gyors_hatasu">gyors hatású:</string>
+    <string name="hosszu_hatasu">hosszú hatású:</string>
+    <string name="segedeszkozok">Segédeszközök:</string>
+    <string name="kapcsolattarto_szemelyek">Kapcsolattartó személyek</string>
+    <string name="szulo_neve">Szülő neve:</string>
+    <string name="szulo_e_mail_cime">Szülő e-mail címe:</string>
+    <string name="szulo_telefonszama">Szülő telefonszáma:</string>
+    <string name="kezeloorvos_neve">Kezelőorvos neve:</string>
+    <string name="kezeloorvos_e_mail_cime">Kezelőorvos e-mail címe:</string>
+    <string name="kezeloorvos_telefonszama">Kezelőorvos telefonszáma:</string>
+    <string name="e_mail">E-mail</string>
+    <string name="telefonszam">Telefonszám</string>
+    <string name="kesz">KÉSZ</string>
+    <string name="megsem">MÉGSEM</string>
+</resources>

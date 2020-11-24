@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mydiabkids.MainFragment"
+        android:label="Főoldal"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_glucoseValuesFragment"
+            app:destination="@id/glucoseValuesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.mydiabkids.ProfileFragment"
+        android:label="Profilom"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_profileSettingsFragment"
+            app:destination="@id/profileSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/glucoseValuesFragment"
+        android:name="com.example.mydiabkids.glucosevalues.ui.GlucoseValuesFragment"
+        android:label="Értékeim"
+        tools:layout="@layout/fragment_glucose_values" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.mydiabkids.SettingsFragment"
+        android:label="Beállítások"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_diababaFragment"
+            app:destination="@id/diababaFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diababaFragment"
+        android:name="com.example.mydiabkids.DiababaFragment"
+        android:label="fragment_diababa"
+        tools:layout="@layout/fragment_diababa" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.mydiabkids.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.mydiabkids.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
+    <fragment
+        android:id="@+id/profileSettingsFragment"
+        android:name="com.example.mydiabkids.ProfileSettingsFragment"
+        android:label="fragment_profile_settings"
+        tools:layout="@layout/fragment_profile_settings" >
+        <action
+            android:id="@+id/action_profileSettingsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+</navigation>

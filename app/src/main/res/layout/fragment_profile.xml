@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nev"
+            android:id="@+id/name_txt"
+            style="@style/TitleText"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_modify"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/profile_modify_btn"
+            android:layout_marginTop="20dp"/>
+
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/profile_img"
+            android:layout_below="@+id/name_txt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_profile"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_modify"
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/profile_modify_btn"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/profile_img_modify_btn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/birth_txt"
+            android:layout_below="@+id/profile_img"
+            android:text="@string/szuletesi_datum"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/birth_date_txt"
+            android:layout_below="@+id/profile_img"
+            android:layout_toRightOf="@+id/birth_txt"
+            android:text="@string/eeee_hh_nn"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@+id/birth_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/diab_type_txt"
+            android:layout_below="@+id/birth_txt"
+            android:text="@string/diabetes_type"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/treatment_txt"
+            android:layout_below="@+id/diab_type_txt"
+            android:text="@string/kezeles"
+            style="@style/BigTextStyle"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_types_txt"
+            android:layout_below="@+id/treatment_txt"
+            android:text="@string/inzulin_tipusa"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bolus_txt"
+            android:layout_below="@+id/insulin_types_txt"
+            android:text="@string/gyors_hatasu"
+            style="@style/LittleTextStyle"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bolus_insulin_txt"
+            android:layout_below="@+id/insulin_types_txt"
+            android:layout_toRightOf="@id/bolus_txt"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/bolus_txt"
+            android:text="@string/dots"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/basis_txt"
+            android:layout_below="@+id/bolus_txt"
+            android:text="@string/hosszu_hatasu"
+            style="@style/LittleTextStyle"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/basis_insulin_txt"
+            android:layout_below="@+id/bolus_insulin_txt"
+            android:layout_toRightOf="@id/bolus_txt"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/bolus_txt"
+            android:text="@string/dots"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_txt"
+            android:layout_below="@+id/basis_txt"
+            android:text="@string/segedeszkozok"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/helpers_txt"
+            android:layout_below="@+id/help_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:maxLines="4"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact_txt"
+            android:layout_below="@+id/helpers_txt"
+            android:text="@string/kapcsolattarto_szemelyek"
+            style="@style/BigTextStyle"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_name_txt"
+            android:layout_below="@+id/contact_txt"
+            android:text="@string/szulo_neve"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_name_edit"
+            android:layout_below="@+id/contact_txt"
+            android:layout_toRightOf="@id/parent_tel_txt"
+            android:layout_alignBaseline="@id/parent_name_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/parent_tel_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_email_txt"
+            android:layout_below="@+id/parent_name_txt"
+            android:text="@string/szulo_e_mail_cime"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_email_edit"
+            android:layout_below="@+id/parent_name_txt"
+            android:layout_toRightOf="@id/parent_tel_txt"
+            android:layout_alignBaseline="@id/parent_email_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/parent_tel_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_tel_txt"
+            android:layout_below="@+id/parent_email_txt"
+            android:text="@string/szulo_telefonszama"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent_tel_edit"
+            android:layout_below="@+id/parent_email_txt"
+            android:layout_toRightOf="@id/parent_tel_txt"
+            android:layout_alignBaseline="@id/parent_tel_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/parent_tel_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_name_txt"
+            android:layout_below="@+id/parent_tel_txt"
+            android:text="@string/kezeloorvos_neve"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_name_edit"
+            android:layout_below="@+id/parent_tel_txt"
+            android:layout_toRightOf="@id/doc_tel_txt"
+            android:layout_alignBaseline="@id/doc_name_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/doc_tel_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_email_txt"
+            android:layout_below="@+id/doc_name_txt"
+            android:text="@string/kezeloorvos_e_mail_cime"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_email_edit"
+            android:layout_below="@+id/doc_name_txt"
+            android:layout_toRightOf="@id/doc_tel_txt"
+            android:layout_alignBaseline="@id/doc_email_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/doc_tel_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_tel_txt"
+            android:layout_below="@+id/doc_email_txt"
+            android:text="@string/kezeloorvos_telefonszama"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doc_tel_edit"
+            android:layout_below="@+id/doc_email_txt"
+            android:layout_toRightOf="@id/doc_tel_txt"
+            android:layout_alignBaseline="@id/doc_tel_txt"
+            android:text="@string/dots"
+            style="@style/LittleTextStyle"
+            android:layout_toEndOf="@id/doc_tel_txt" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".glucosevalues.NewGlValueActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Új bejegyzés"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        android:id="@+id/new_value_txt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_date_txt"
+        android:text="Dátum:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/new_value_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="@dimen/date_text_width"
+        android:layout_height="@dimen/date_text_height"
+        android:id="@+id/date"
+        android:background="?colorPrimary"
+        android:textColor="@color/black"
+        android:layout_below="@id/new_value_txt"
+        android:layout_toRightOf="@id/m_date_txt"
+        android:layout_toEndOf="@id/m_date_txt"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:onClick="showDatePicker"
+        app:fontFamily="@font/redhatdisplay"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_time_txt"
+        android:text="Idő:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/m_date_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="?colorPrimary"
+        android:textColor="@color/black"
+        android:layout_below="@id/m_date_txt"
+        android:layout_toRightOf="@id/m_date_txt"
+        android:layout_toEndOf="@id/m_date_txt"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:onClick="showTimePicker"
+        android:id="@+id/time"
+        app:fontFamily="@font/redhatdisplay"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/m_time_txt"
+        android:id="@+id/eating_spinner"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        app:fontFamily="@font/redhatdisplay"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_values_txt"
+        android:text="Érték:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/eating_spinner"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/values_edit_text"
+        android:layout_below="@id/eating_spinner"
+        android:layout_alignStart="@id/insulin_edit_text"
+        android:layout_alignBaseline="@id/m_values_txt"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignLeft="@id/insulin_edit_text"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mmol_txt"
+        android:text="mmol/l"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/eating_spinner"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@id/values_edit_text"
+        android:layout_toRightOf="@id/values_edit_text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/insulin_txt"
+        android:text="Inzulin:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/m_values_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/insulin_edit_text"
+        android:layout_below="@id/values_edit_text"
+        android:layout_toRightOf="@id/insulin_txt"
+        android:layout_toEndOf="@id/insulin_txt"
+        android:layout_alignBaseline="@id/insulin_txt"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="numberDecimal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/e_txt"
+        android:text="E"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/mmol_txt"
+        android:layout_marginBottom="30dp"
+        android:layout_toEndOf="@id/insulin_edit_text"
+        android:layout_toRightOf="@id/insulin_edit_text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/type_txt"
+        android:text="Típus:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/insulin_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/insulin_txt"
+        android:id="@+id/type_spinner"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@id/type_txt"
+        android:layout_toRightOf="@id/type_txt"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        app:fontFamily="@font/redhatdisplay"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_txt"
+        android:text="Megjegyzés:"
+        app:fontFamily="@font/redhatdisplay"
+        android:textSize="18sp"
+        android:layout_below="@id/type_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/note_edit_text"
+        android:layout_below="@id/note_txt"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:inputType="text"
+        android:hint="(Pl.: sport)"
+        android:autofillHints="(Pl.: sport)" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:text="KÉSZ"
+        android:textColor="@color/black"
+        android:id="@+id/save_btn"
+        android:layout_above="@id/cancel_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:onClick="save"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="MÉGSEM"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/cancel_btn"
+        android:onClick="cancel"
+        android:background="@color/grey"/>
+
+</RelativeLayout>

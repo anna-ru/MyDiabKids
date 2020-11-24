@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add meg a vércukor értéket!"
+            app:fontFamily = "@font/redhatdisplay"
+            android:id="@+id/popup_txt"
+            android:paddingTop="25sp"
+            android:paddingLeft="25sp"
+            android:paddingRight="25sp"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/popup_txt"
+            android:layout_centerHorizontal="true"
+            android:text="OK"
+            android:textColor="@color/black"
+            android:background="@color/colorBackground"
+            android:layout_margin="15dp"
+            android:id="@+id/popup_btn"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

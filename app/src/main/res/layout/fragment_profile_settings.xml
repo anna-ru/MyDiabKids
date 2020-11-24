@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileSettingsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil beállítások"
+            style="@style/TitleText"
+            android:id="@+id/profile_settings_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nev"
+            style="@style/BigTextStyle"
+            android:textStyle="bold"
+            android:layout_below="@id/profile_settings_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left"
+            android:id="@+id/name_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add meg a neved:"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            style="@style/LittleTextStyle"
+            android:layout_below="@id/name_text"
+            android:id="@+id/add_name"/>
+
+        <EditText
+            android:layout_width="@dimen/date_text_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/name_editText"
+            style="@style/LittleTextStyle"
+            android:layout_below="@id/add_name"
+            android:layout_marginBottom="15dp"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/szuletesi_datum"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left"
+            android:layout_below="@id/name_editText"
+            android:id="@+id/birth_date_text"/>
+
+        <TextView
+            android:layout_width="@dimen/date_text_width"
+            android:layout_height="@dimen/date_text_height"
+            android:background="?colorPrimary"
+            android:textColor="@color/black"
+            style="@style/LittleTextStyle"
+            android:layout_toRightOf="@id/birth_date_text"
+            android:layout_toEndOf="@id/birth_date_text"
+            android:layout_below="@id/name_editText"
+            android:id="@+id/birth_edit"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/diab_type_txt"
+            android:layout_below="@+id/birth_date_text"
+            android:text="@string/diabetes_type_"
+            style="@style/LittleTextStyle"
+            android:layout_marginTop="20dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/diab_type_spinner"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/birth_date_text"
+            android:layout_toRightOf="@id/diab_type_txt"
+            android:layout_toEndOf="@id/diab_type_txt"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/treatment_text"
+            android:layout_below="@+id/diab_type_txt"
+            android:text="@string/kezeles"
+            android:textStyle="bold"
+            style="@style/BigTextStyle"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_types_txt"
+            android:layout_below="@+id/treatment_text"
+            android:text="@string/inzulin_tipusa"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="Add meg a gyors hatású (bólus) inzulin típusát:"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/insulin_types_txt"
+            android:id="@+id/add_bolus"
+            />
+
+        <EditText
+            android:layout_width="@dimen/date_text_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/bolus_edit"
+            android:layout_below="@id/add_bolus"
+            android:text="gyors hatású"
+            style="@style/LittleTextStyle"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="Add meg a hosszú hatású (bázis) inzulin típusát:"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/bolus_edit"
+            android:id="@+id/add_basis"/>
+
+        <EditText
+            android:layout_width="@dimen/date_text_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/basis_edit"
+            style="@style/LittleTextStyle"
+            android:layout_below="@id/add_basis"
+            android:text="hosszú hatású"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/help_txt"
+            android:layout_below="@+id/basis_edit"
+            android:text="@string/segedeszkozok"
+            style="@style/LittleTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Add meg a segédeszközöket, amiket használsz (pl. inzulinpumpa, vércukormérő, stb.):"
+            android:layout_below="@id/help_txt"
+            android:id="@+id/add_helpers"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tools_edit"
+            style="@style/LittleTextStyle"
+            android:maxLines="4"
+            android:layout_below="@id/add_helpers"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact_text"
+            android:layout_below="@+id/tools_edit"
+            android:text="@string/kapcsolattarto_szemelyek"
+            style="@style/BigTextStyle"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/text_margin_left"
+            android:layout_marginStart="@dimen/text_margin_left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="Add meg a szülő adatait:"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/contact_text"
+            android:id="@+id/add_parent_data"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/nev"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/add_parent_data"
+            android:id="@+id/add_p_name"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pname_edit"
+            style="@style/LittleTextStyle"
+            android:layout_below="@id/add_p_name"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:maxLines="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/e_mail"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/pname_edit"
+            android:id="@+id/add_p_email"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pemail_edit"
+            style="@style/LittleTextStyle"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:layout_below="@id/add_p_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/telefonszam"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/pemail_edit"
+            android:id="@+id/add_p_tel"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ptel_edit"
+            style="@style/LittleTextStyle"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:layout_below="@id/add_p_tel"
+            android:inputType="phone"
+            android:maxLines="1"
+            />
+
+    <!-- Doctor's information-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="Add meg a kezelőorvos adatait:"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/add_doctor_data"
+            android:layout_below="@id/ptel_edit"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/nev"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/add_doctor_data"
+            android:id="@+id/add_d_name"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dname_edit"
+            style="@style/LittleTextStyle"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:layout_below="@id/add_d_name"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/e_mail"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/dname_edit"
+            android:id="@+id/add_d_email"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/demail_edit"
+            style="@style/LittleTextStyle"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:layout_below="@id/add_d_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LittleTextStyle"
+            android:text="@string/telefonszam"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/demail_edit"
+            android:id="@+id/add_d_tel"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dtel_edit"
+            style="@style/LittleTextStyle"
+            android:layout_marginRight="@dimen/text_margin_left"
+            android:layout_marginEnd="@dimen/text_margin_left"
+            android:layout_below="@id/add_d_tel"
+            android:inputType="phone"
+            android:maxLines="1"
+            />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="?colorPrimary"
+            android:text="@string/kesz"
+            android:textColor="@color/black"
+            android:id="@+id/profile_save_btn"
+            android:layout_below="@+id/dtel_edit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/megsem"
+            android:layout_below="@id/profile_save_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/profile_cancel_btn"
+            android:background="@color/grey"/>
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.mydiabkids.glucosevalues.model.CheckableCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="2dp"
+    android:layout_gravity="center_horizontal"
+    app:cardUseCompatPadding="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/checkable_cardView"
+    >
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/expandable_layout"
+        android:layout_gravity="center"
+        android:padding="7dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/m_time_txt"
+            android:text="Idő:"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_edit"
+            android:textColor="@color/black"
+            android:text="10:00"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/m_time_txt"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:layout_toEndOf="@id/m_time_txt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/value_txt"
+            android:textColor="@color/black"
+            android:text="Érték:"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:layout_below="@id/m_time_txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/value_edit"
+            android:textColor="@color/black"
+            android:text="7.2"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/value_txt"
+            android:layout_toEndOf="@id/value_txt"
+            android:layout_below="@id/time_edit"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mmol"
+            android:textColor="@color/black"
+            android:text="mmol/l"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/value_edit"
+            android:layout_toEndOf="@id/value_edit"
+            android:layout_below="@id/time_edit"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eating_txt"
+            android:text="Étkezés után"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_below="@id/value_txt"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_txt"
+            android:text="Inzulin:"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:layout_below="@id/eating_txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_edit"
+            android:text="-"
+            app:fontFamily="@font/redhatdisplay"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/insulin_txt"
+            android:layout_toEndOf="@id/insulin_txt"
+            android:layout_below="@id/eating_txt"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/e"
+            android:textColor="@color/black"
+            android:text="E"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/insulin_edit"
+            android:layout_toEndOf="@id/insulin_edit"
+            android:layout_below="@id/eating_txt"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_type_txt"
+            android:text="Típus:"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:layout_below="@id/insulin_txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insulin_type"
+            android:text="-"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/insulin_type_txt"
+            android:layout_toEndOf="@id/insulin_type_txt"
+            android:layout_below="@id/insulin_txt"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_txt"
+            android:text="Megjegyzések:"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:layout_below="@id/insulin_type_txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/notes_edit_text"
+            android:textColor="@color/black"
+            android:text="-"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="15sp"
+            android:layout_below="@id/note_txt"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"/>
+
+    </RelativeLayout>
+
+</com.example.mydiabkids.glucosevalues.model.CheckableCardView>

@@ -1,0 +1,65 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="PinkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="BlueTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/salad_light_blue</item>
+        <item name="colorPrimaryDark">@color/salad_dark_blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="YellowTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/light_yellow</item>
+        <item name="colorPrimaryDark">@color/yellow</item>
+        <item name="colorAccent">@color/dark_yellow</item>
+    </style>
+
+    <style name="GreenTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/salad_light_green</item>
+        <item name="colorPrimaryDark">@color/salad_dark_green</item>
+        <item name="colorAccent">@color/green</item>
+    </style>
+
+    <style name="OrangeTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/light_orange</item>
+        <item name="colorPrimaryDark">@color/dark_orange</item>
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    <style name="BrownTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/light_brown</item>
+        <item name="colorPrimaryDark">@color/brown</item>
+        <item name="colorAccent">@color/dark_brown</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="TitleText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="fontFamily">@font/redhatdisplay</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_margin">@dimen/title_margin</item>
+    </style>
+
+    <style name="BigTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="fontFamily">@font/redhatdisplay</item>
+    </style>
+
+    <style name="LittleTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="fontFamily">@font/redhatdisplay</item>
+        <item name="android:layout_marginLeft">@dimen/text_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/text_margin_left</item>
+    </style>
+</resources>

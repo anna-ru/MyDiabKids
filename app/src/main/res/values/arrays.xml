@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="eating_array">
+        <item>"Étkezés előtt"</item>
+        <item>"Étkezés után"</item>
+        <item>"Éhomi"</item>
+    </string-array>
+    <string-array name="type_array">
+        <item>"bólus"</item>
+        <item>"bázis"</item>
+        <item>"-"</item>
+    </string-array>
+    <string-array name="diab_type_array">
+        <item>"1-es típusú diabétesz"</item>
+        <item>"2-es típusú diabétesz"</item>
+    </string-array>
+</resources>

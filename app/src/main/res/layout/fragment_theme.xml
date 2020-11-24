@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ThemeFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_normal"
+        android:text="Válassz színtémát"
+        android:layout_centerHorizontal="true"
+        app:fontFamily="@font/redhatdisplay"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:id="@+id/theme_title"/>
+
+    <RadioGroup
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_group"
+        android:layout_below="@id/theme_title"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Rózsaszín"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/pink"
+            android:textSize="@dimen/text_size_normal"
+            />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/salad_light_blue"
+            android:text="Kék"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/blue"
+            android:textSize="@dimen/text_size_normal"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_yellow"
+            android:text="Sárga"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/yellow"
+            android:textSize="@dimen/text_size_normal"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_orange"
+            android:text="Narancssárga"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/orange"
+            android:textSize="@dimen/text_size_normal"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/salad_light_green"
+            android:text="Zöld"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/green"
+            android:textSize="@dimen/text_size_normal"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_brown"
+            android:text="Barna"
+            android:textColor="@color/black"
+            app:fontFamily="@font/redhatdisplay"
+            android:id="@+id/brown"
+            android:textSize="@dimen/text_size_normal"/>
+    </RadioGroup>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_group"
+        android:layout_marginTop="40dp"
+        android:textOn="Világos téma:   "
+        app:fontFamily="@font/redhatdisplay"
+        android:text="Sötét téma:   "
+        android:textOff="Sötét téma:   "
+        android:padding="10dp"
+        android:textSize="@dimen/text_size_normal"
+        android:id="@+id/dark_mode_switch"
+        />
+
+</RelativeLayout>
