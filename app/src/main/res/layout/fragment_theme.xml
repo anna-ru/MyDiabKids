@@ -9,13 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_normal"
+        style="@style/TitleText"
         android:text="Válassz színtémát"
-        android:layout_centerHorizontal="true"
-        app:fontFamily="@font/redhatdisplay"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold"
         android:id="@+id/theme_title"/>
 
     <RadioGroup
@@ -82,18 +77,22 @@
             android:textSize="@dimen/text_size_normal"/>
     </RadioGroup>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Sötét/világos téma:"
+        android:id="@+id/switch_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button_group"
+        android:layout_marginTop="20dp"/>
+
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/button_group"
-        android:layout_marginTop="40dp"
-        android:textOn="Világos téma:   "
-        app:fontFamily="@font/redhatdisplay"
-        android:text="Sötét téma:   "
-        android:textOff="Sötét téma:   "
-        android:padding="10dp"
-        android:textSize="@dimen/text_size_normal"
+        android:layout_below="@id/switch_text"
+        android:layout_marginTop="20dp"
         android:id="@+id/dark_mode_switch"
         />
 

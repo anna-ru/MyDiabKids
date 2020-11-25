@@ -8,18 +8,7 @@
     <string name="save">Mentés</string>
     <string name="cancel">Mégse</string>
 
-    <string name="sp_name">com.example.mydiabkids.NAME</string>
-    <string name="sp_birth_date">com.example.mydiabkids.BIRTH</string>
-    <string name="sp_diab_type">com.example.mydiabkids.DIAB</string>
-    <string name="sp_bolus">com.example.mydiabkids.BOLUS</string>
-    <string name="sp_basis">com.example.mydiabkids.BASIS</string>
-    <string name="sp_tools">com.example.mydiabkids.TOOLS</string>
-    <string name="sp_pname">com.example.mydiabkids.PNAME</string>
-    <string name="sp_pemail">com.example.mydiabkids.PEMAIL</string>
-    <string name="sp_ptel">com.example.mydiabkids.PTEL</string>
-    <string name="sp_dname">com.example.mydiabkids.DNAME</string>
-    <string name="sp_demail">com.example.mydiabkids.DEMAIL</string>
-    <string name="sp_dtel">com.example.mydiabkids.DTEL</string>
+    <string name="diababa_shared_pref">com.example.mydiabkids.DIABABA</string>
     <string name="theme_shared_pref">com.example.mydiabkids.THEME</string>
     <string name="dark_shared_pref">com.example.mydiabkids.DARK</string>
 

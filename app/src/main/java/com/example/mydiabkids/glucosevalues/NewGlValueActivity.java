@@ -115,10 +115,13 @@ public class NewGlValueActivity extends AppCompatActivity {
             mPopUpWindow.showAtLocation(view, Gravity.CENTER,0,0);
         } else {
 
+            String typeTxt = type_spinner.getSelectedItem().toString();
             if(!TextUtils.isEmpty(insulin.getText())) {
                 double insulinTxt = Double.parseDouble(insulin.getText().toString());
                 replyIntent.putExtra(EXTRA_INSULIN, insulinTxt);
+                replyIntent.putExtra(EXTRA_TYPE, typeTxt);
             } else {
+                replyIntent.putExtra(EXTRA_TYPE, "-");
             }
 
             if(!TextUtils.isEmpty(note.getText())) {
@@ -129,13 +132,12 @@ public class NewGlValueActivity extends AppCompatActivity {
             String dateTxt = date.getText().toString();
             String timeTxt = time.getText().toString();
             String eatingTxt = eating_spinner.getSelectedItem().toString();
-            String typeTxt = type_spinner.getSelectedItem().toString();
+
             double value = Double.parseDouble(gl_value.getText().toString());
 
             replyIntent.putExtra(EXTRA_DATE, dateTxt);
             replyIntent.putExtra(EXTRA_TIME, timeTxt);
             replyIntent.putExtra(EXTRA_EATING, eatingTxt);
-            replyIntent.putExtra(EXTRA_TYPE, typeTxt);
             replyIntent.putExtra(EXTRA_VALUE, value);
 
             setResult(RESULT_OK, replyIntent);

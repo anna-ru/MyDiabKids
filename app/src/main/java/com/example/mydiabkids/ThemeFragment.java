@@ -50,6 +50,7 @@ public class ThemeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_theme, container, false);
+        Context context = getContext();
         group = view.findViewById(R.id.button_group);
         sharedPreferences = getContext().getSharedPreferences(getString(R.string.theme_shared_pref), Context.MODE_PRIVATE);
         current_theme = sharedPreferences.getInt(getString(R.string.theme_shared_pref), PINK);
@@ -61,6 +62,7 @@ public class ThemeFragment extends Fragment {
                 editor.putInt(getString(R.string.theme_shared_pref), checkedId);
                 editor.apply();
                 getActivity().recreate();
+                Toast.makeText(context, "Téma beállítása sikerült.", Toast.LENGTH_SHORT).show();
             }
         });
         darkMode = getContext().getSharedPreferences(getString(R.string.dark_shared_pref), Context.MODE_PRIVATE);
@@ -75,6 +77,7 @@ public class ThemeFragment extends Fragment {
                 editor.apply();
                 if(b) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                Toast.makeText(context, "Téma beállítása sikerült.", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

@@ -1,5 +1,7 @@
 package com.example.mydiabkids;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SettingsFragment extends Fragment {
 
@@ -24,6 +29,13 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        Context context = getContext();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(getString(R.string.diababa_shared_pref), MODE_PRIVATE);
+        int currentImage = sharedPreferences.getInt(getString(R.string.diababa_shared_pref), R.drawable.blood_smiling);
+        ImageView imageView = view.findViewById(R.id.diababa_img);
+        imageView.setImageResource(currentImage);
+
         notifications = view.findViewById(R.id.notifications_txt);
         theme = view.findViewById(R.id.theme_change_txt);
         modify = view.findViewById(R.id.modify_diababa);

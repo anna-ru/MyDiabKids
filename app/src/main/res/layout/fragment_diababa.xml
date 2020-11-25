@@ -1,19 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DiababaFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Diababa"
-        android:textSize="@dimen/text_size_normal"
-        app:fontFamily="@font/redhatdisplay"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diababa"
+            style="@style/TitleText"
+            android:id="@+id/diababa_title"
+            android:layout_above="@id/img_switcher"/>
 
-</ScrollView>
+        <ImageSwitcher
+            android:layout_width="@dimen/image_view_width"
+            android:layout_height="@dimen/image_view_height"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_switcher"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/previous"
+            android:layout_toLeftOf="@id/img_switcher"
+            android:layout_toStartOf="@id/img_switcher"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:background="@null"
+            android:layout_margin="20dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/next"
+            android:layout_toRightOf="@id/img_switcher"
+            android:layout_toEndOf="@id/img_switcher"
+            android:layout_centerVertical="true"
+            android:src="@drawable/forward"
+            android:background="@null"
+            android:layout_margin="20dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_switcher"
+            android:layout_centerHorizontal="true"
+            android:background="?colorPrimary"
+            android:text="Ez legyen!"
+            app:fontFamily="@font/redhatdisplay"
+            android:padding="10dp"
+            android:id="@+id/confirm_image_btn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Icon made by Freepik from www.flaticon.com"
+            app:fontFamily="@font/redhatdisplay"
+            android:textSize="13sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp" />
+    </RelativeLayout>

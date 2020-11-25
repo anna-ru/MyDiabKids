@@ -12,11 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MyDiab"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        app:fontFamily="@font/redhatdisplay"
-        android:textStyle="bold"
-        android:textSize="30sp"
+        style="@style/MainTitleText"
         android:shadowRadius="2"
         android:shadowColor="@color/black"
         android:shadowDx="2"
@@ -95,7 +91,7 @@
         android:shadowDx="2"/>
 
     <ImageView
-        android:id="@+id/blood"
+        android:id="@+id/diababa"
         android:layout_width="@dimen/image_view_width"
         android:layout_height="@dimen/image_view_height"
         android:layout_below="@+id/k"
@@ -109,7 +105,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/blood"
+        android:layout_below="@+id/diababa"
         android:text="@string/values_txt"
         android:textColor="@color/black"
         app:fontFamily="@font/redhatdisplay"

@@ -13,12 +13,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/values_title"
         android:text="Értékeim"
-        android:layout_margin="20dp"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        app:fontFamily="@font/redhatdisplay"
-        android:textSize="@dimen/text_size_normal"
-        android:textStyle="bold"
+        style="@style/TitleText"
         />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -3,11 +3,12 @@
     <string-array name="eating_array">
         <item>"Étkezés előtt"</item>
         <item>"Étkezés után"</item>
-        <item>"Éhomi"</item>
+        <item>"Reggeli"</item>
+        <item>"Éjszakai"</item>
     </string-array>
     <string-array name="type_array">
-        <item>"bólus"</item>
-        <item>"bázis"</item>
+        <item>"gyors hatású"</item>
+        <item>"hosszú hatású"</item>
         <item>"-"</item>
     </string-array>
     <string-array name="diab_type_array">
