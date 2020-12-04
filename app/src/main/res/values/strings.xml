@@ -15,7 +15,7 @@
     <string name="diabetes_type">Diabétesz típusa</string>
     <string name="eeee_hh_nn">ÉÉÉÉ.HH.NN.</string>
     <string name="nev">Név</string>
-    <string name="dots">...</string>
+    <string name="dots">…</string>
     <string name="szuletesi_datum">Születési dátum:</string>
     <string name="diabetes_type_">Diabétesz típusa:</string>
     <string name="kezeles">Kezelés</string>
@@ -34,4 +34,5 @@
     <string name="telefonszam">Telefonszám</string>
     <string name="kesz">KÉSZ</string>
     <string name="megsem">MÉGSEM</string>
+    <string name="szenzor">szenzor</string>
 </resources>

@@ -10,12 +10,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.mydiabkids.R;
@@ -59,8 +61,10 @@ public class GlucoseValuesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_glucose_values, container, false);
+        View view = inflater.inflate(R.layout.fragment_glucose_values, container, false);
+        Button sensorBtn = view.findViewById(R.id.values_sensor_btn);
+        sensorBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_glucoseValuesFragment_to_sensorFragment));
+        return view;
     }
 
     @Override

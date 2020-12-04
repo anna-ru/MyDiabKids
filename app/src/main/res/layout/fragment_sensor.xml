@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".glucosevalues.sensor.SensorFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Szenzor adatok"
+        style="@style/TitleText"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/start_sensor_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="szenzor indítása"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:fontFamily="@font/redhatdisplay"
+        android:textStyle="bold"
+        android:background="?colorPrimary" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/stop_sensor_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/start_sensor_btn"
+        android:text="szenzor leállítása"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:fontFamily="@font/redhatdisplay"
+        android:textStyle="bold"
+        android:background="@color/grey"
+        android:padding="10dp"/>
+
+</RelativeLayout>

@@ -46,6 +46,9 @@ public class MainFragment extends Fragment {
         Button settingsBtn = view.findViewById(R.id.settings_btn);
         settingsBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_settingsFragment));
 
+        Button sensorBtn = view.findViewById(R.id.sensor_btn);
+        sensorBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_mainFragment_to_sensorFragment));
+
         return view;
     }
 }

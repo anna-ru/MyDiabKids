@@ -18,10 +18,29 @@
         style="@style/TitleText"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/values_sensor_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/values_title"
+        android:layout_marginBottom="15dp"
+        android:text="@string/szenzor"
+        android:textColor="@color/black"
+        app:fontFamily="@font/redhatdisplay"
+        android:textStyle="bold"
+        android:background="?colorPrimary"
+        android:drawableRight="@drawable/bluetooth"
+        android:drawableEnd="@drawable/bluetooth"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/values_title"
+        android:layout_below="@+id/values_sensor_btn"
         android:id="@+id/recycler_view"
         tools:listitem="@layout/list_child"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

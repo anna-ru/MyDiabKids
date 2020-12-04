@@ -120,7 +120,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/values_btn"
+        android:layout_below="@+id/sensor_btn"
         android:text="@string/profile_txt"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
@@ -146,5 +146,21 @@
         android:drawableRight="@drawable/ic_settings"
         android:drawableEnd="@drawable/ic_settings"
         android:padding="5dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sensor_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/values_btn"
+        android:text="@string/szenzor"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:fontFamily="@font/redhatdisplay"
+        android:textStyle="bold"
+        android:background="?colorPrimary"
+        android:drawableRight="@drawable/bluetooth"
+        android:drawableEnd="@drawable/bluetooth"
+        android:padding="10dp"/>
 
 </RelativeLayout>

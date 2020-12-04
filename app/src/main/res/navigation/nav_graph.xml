@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sensorFragment"
+            app:destination="@id/sensorFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -33,7 +36,11 @@
         android:id="@+id/glucoseValuesFragment"
         android:name="com.example.mydiabkids.glucosevalues.ui.GlucoseValuesFragment"
         android:label="Értékeim"
-        tools:layout="@layout/fragment_glucose_values" />
+        tools:layout="@layout/fragment_glucose_values" >
+        <action
+            android:id="@+id/action_glucoseValuesFragment_to_sensorFragment"
+            app:destination="@id/sensorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.mydiabkids.SettingsFragment"
@@ -73,4 +80,9 @@
             android:id="@+id/action_profileSettingsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sensorFragment"
+        android:name="com.example.mydiabkids.glucosevalues.sensor.SensorFragment"
+        android:label="fragment_sensor"
+        tools:layout="@layout/fragment_sensor" />
 </navigation>
