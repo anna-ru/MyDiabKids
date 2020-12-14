@@ -8,6 +8,9 @@
             android:id="@+id/glucoseValuesFragment"
             android:title="Értékeim"/>
         <item
+            android:id="@+id/sensorFragment"
+            android:title="Szenzor"/>
+        <item
             android:id="@+id/profileFragment"
             android:title="Profilom"/>
         <item

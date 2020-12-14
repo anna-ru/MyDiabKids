@@ -9,7 +9,7 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
         // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
+        //coreLibraryDesugaringEnabled true
         // Sets Java compatibility to Java 8
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mydiabkids"
-        minSdkVersion 16
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -76,7 +76,7 @@ dependencies {
 
 // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
 
 // UI
     implementation "com.google.android.material:material:$materialVersion"
@@ -86,4 +86,6 @@ dependencies {
 
     //InfluxDB
     implementation "com.influxdb:influxdb-client-java:1.14.0"
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
 }

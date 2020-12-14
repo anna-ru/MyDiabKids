@@ -38,13 +38,12 @@ public class SensorFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //influxDB = new InfluxDB();
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //influxDB.startSensor(context);
-                //Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
-            }
+        influxDB = new InfluxDB(context);
+        startBtn.setOnClickListener(view1 -> {
+            influxDB.start();
+            Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
         });
+
+
     }
 }

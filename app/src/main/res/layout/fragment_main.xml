@@ -161,6 +161,7 @@
         android:background="?colorPrimary"
         android:drawableRight="@drawable/bluetooth"
         android:drawableEnd="@drawable/bluetooth"
+        android:drawableTint="@color/black"
         android:padding="10dp"/>
 
 </RelativeLayout>
