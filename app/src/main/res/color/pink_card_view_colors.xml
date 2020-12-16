@@ -3,6 +3,8 @@
     <item android:color="@color/colorAccent"
         android:state_pressed="true" />
     <item android:color="@color/colorChecked"
+        android:state_enabled="false" />
+    <item android:color="@color/colorChecked"
         android:state_checked="true" />
     <item android:color="@color/colorPrimary" />
 

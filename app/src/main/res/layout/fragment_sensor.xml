@@ -13,62 +13,71 @@
         style="@style/TitleText"
         android:id="@+id/sensor_title"/>
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="0.0"
-        android:id="@+id/current_value"
-        android:layout_below="@id/sensor_title"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_centerVertical="true"
+        >
 
-<!--
-    <WebView
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/graph"
-        android:layout_below="@id/sensor_title"
-        android:layout_centerHorizontal="true"/>
--->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sensor_values_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/current_value"
-        android:text="szenzor értékek megtekintése"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        app:fontFamily="@font/redhatdisplay"
-        android:textStyle="bold"
-        android:background="?colorPrimary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:text="0.0"
+            android:id="@+id/current_value"
+            android:layout_centerHorizontal="true"
+            />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/start_sensor_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/sensor_values_btn"
-        android:text="szenzor indítása"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        app:fontFamily="@font/redhatdisplay"
-        android:textStyle="bold"
-        android:background="?colorPrimary" />
+    <!--
+        <WebView
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/graph"
+            android:layout_below="@id/sensor_title"
+            android:layout_centerHorizontal="true"/>
+    -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sensor_values_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/buttons"
+            android:text="szenzor értékek megtekintése"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            app:fontFamily="@font/redhatdisplay"
+            android:textStyle="bold"
+            android:background="?colorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/stop_sensor_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/start_sensor_btn"
-        android:text="szenzor leállítása"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        app:fontFamily="@font/redhatdisplay"
-        android:textStyle="bold"
-        android:background="@color/grey"
-        android:padding="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttons"
+            android:layout_below="@id/current_value"
+            android:layout_margin="20dp"
+            android:layout_centerHorizontal="true">
+
+            <ImageButton
+                android:id="@+id/stop_sensor_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/stop"
+                android:layout_marginEnd="20dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                />
+
+            <ImageButton
+                android:id="@+id/start_sensor_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                android:background="@drawable/start"
+                android:adjustViewBounds="true"
+                android:backgroundTint="?colorPrimary"/>
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
