@@ -27,6 +27,7 @@
             android:text="0.0"
             android:id="@+id/current_value"
             android:layout_centerHorizontal="true"
+            android:textAlignment="center"
             />
 
     <!--
@@ -42,22 +43,23 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/buttons"
+            android:layout_below="@id/start_sensor_btn"
             android:text="szenzor értékek megtekintése"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
             app:fontFamily="@font/redhatdisplay"
             android:textStyle="bold"
             android:background="?colorPrimary" />
-
+<!--
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttons"
             android:layout_below="@id/current_value"
             android:layout_margin="20dp"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true">-->
 
+            <!--
             <ImageButton
                 android:id="@+id/stop_sensor_btn"
                 android:layout_width="80dp"
@@ -67,7 +69,7 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 />
-
+-->
             <ImageButton
                 android:id="@+id/start_sensor_btn"
                 android:layout_width="80dp"
@@ -75,9 +77,11 @@
                 android:scaleType="fitCenter"
                 android:background="@drawable/start"
                 android:adjustViewBounds="true"
-                android:backgroundTint="?colorPrimary"/>
-
-        </LinearLayout>
+                android:backgroundTint="?colorPrimary"
+                android:layout_below="@id/current_value"
+                android:layout_centerHorizontal="true"/>
+<!--
+        </LinearLayout>-->
     </RelativeLayout>
 
 </RelativeLayout>

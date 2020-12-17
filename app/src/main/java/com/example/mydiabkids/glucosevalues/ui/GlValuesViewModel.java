@@ -45,4 +45,5 @@ public class GlValuesViewModel extends AndroidViewModel {
     public void deleteValue(GlucoseValueEntity value){
         mRepository.deleteValue(value);
     }
+
 }

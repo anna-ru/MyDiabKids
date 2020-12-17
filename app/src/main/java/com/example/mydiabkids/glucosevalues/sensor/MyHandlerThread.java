@@ -19,4 +19,7 @@ class MyHandlerThread extends HandlerThread {
         handler = new Handler(getLooper());
     }
 
+    public void postDelayed(Runnable task, long delay){ handler.postDelayed(task, delay);}
+
+    public void removeCallback(Runnable r) {handler.removeCallbacks(r);}
 }
