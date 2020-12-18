@@ -51,14 +51,6 @@ import static com.example.mydiabkids.ProfileSettingsFragment.PTEL;
 
 public class ProfileFragment extends Fragment {
 
-    public static final int CAMERA_PERM_CODE = 101;
-    public static final int CHOOSE_PIC_REQUEST_CODE = 3;
-    public static final int TAKE_PIC_REQUEST_CODE = 4;
-    public static final int MEDIA_TYPE_IMAGE = 2;
-
-    private Uri mMediaUri;
-    private ImageView profilePicture;
-    private String currentPhotoPath;
     Context context;
     TextView nameTV, birthTV, diabTV, bolusTV, basisTV, toolsTV, pNameTV, pEmailTV, pTelTV, dNameTV, dEmailTV, dTelTV;
 
@@ -107,16 +99,6 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
             Toast.makeText(context, "Valami hiba történt", Toast.LENGTH_SHORT).show();
         }
-
-
-        profilePicture = view.findViewById(R.id.profile_img);
-        ImageButton modifyImg = view.findViewById(R.id.profile_img_modify_btn);
-        modifyImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectImage(context);
-            }
-        });
 
         return view;
     }
@@ -193,29 +175,6 @@ public class ProfileFragment extends Fragment {
         if (!dName.isEmpty()) dNameTV.setText(dName);
         if (!(dEmail).isEmpty()) dEmailTV.setText(dEmail);
         if (!(dTel).isEmpty()) dTelTV.setText(dTel);
-    }
-
-    //TODO: profile picture saving
-    private void selectImage(Context context) {
-        final CharSequence[] options = {"Kép készítése", "Választás a galériából", "Mégse"};
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Profilkép beállítása");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Kép készítése")) {
-                    //Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    //startActivityForResult(takePicture, TAKE_PIC_REQUEST_CODE);
-                } else if (options[item].equals("Választás a galériából")) {
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto, CHOOSE_PIC_REQUEST_CODE);
-                } else if (options[item].equals("Mégse")) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
     }
 
     public ProfileFragment() {

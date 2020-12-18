@@ -32,34 +32,11 @@
             android:layout_marginTop="20dp"/>
 
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/profile_img"
-            android:layout_below="@+id/name_txt"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_profile"
-            />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_modify"
-            android:background="@null"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/profile_modify_btn"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/profile_img_modify_btn"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/birth_txt"
-            android:layout_below="@+id/profile_img"
+            android:layout_below="@+id/name_txt"
             android:text="@string/szuletesi_datum"
             style="@style/LittleTextStyle"
             android:textStyle="bold" />
@@ -68,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/birth_date_txt"
-            android:layout_below="@+id/profile_img"
+            android:layout_below="@+id/name_txt"
             android:layout_toRightOf="@+id/birth_txt"
             android:text="@string/eeee_hh_nn"
             style="@style/LittleTextStyle"
