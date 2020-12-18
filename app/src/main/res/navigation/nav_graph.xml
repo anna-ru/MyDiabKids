@@ -84,5 +84,14 @@
         android:id="@+id/sensorFragment"
         android:name="com.example.mydiabkids.glucosevalues.sensor.SensorFragment"
         android:label="fragment_sensor"
-        tools:layout="@layout/fragment_sensor" />
+        tools:layout="@layout/fragment_sensor" >
+        <action
+            android:id="@+id/action_sensorFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.mydiabkids.glucosevalues.sensor.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
 </navigation>

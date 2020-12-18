@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".glucosevalues.sensor.StatisticsFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleText"
+        android:text="Statisztika"
+        android:id="@+id/stat_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Napi átlag:"
+        android:layout_below="@id/stat_title"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/daily_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/stat_title"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/d_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Heti átlag:"
+        android:layout_below="@id/daily_max"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:id="@+id/weeky_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/d_max"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/w_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Havi átlag:"
+        android:layout_below="@id/weekly_max"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:id="@+id/monthly_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/w_max"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/m_avg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Napi minimum:"
+        android:layout_below="@id/daily_avg"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/daily_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/d_avg"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/d_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Napi maximum:"
+        android:layout_below="@id/daily_min"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/daily_max"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/d_min"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/d_max"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Heti minimum:"
+        android:layout_below="@id/weeky_avg"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/weekly_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/w_avg"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/w_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Heti maximum:"
+        android:layout_below="@id/weekly_min"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/weekly_max"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/w_min"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/w_max"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Havi minimum:"
+        android:layout_below="@id/monthly_avg"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/monthly_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/m_avg"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/m_min"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="Havi maximum:"
+        android:layout_below="@id/monthly_min"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:id="@+id/monthly_max" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LittleTextStyle"
+        android:text="0.0"
+        android:layout_below="@id/m_min"
+        android:layout_toEndOf="@id/monthly_max"
+        android:layout_marginStart="10dp"
+        android:id="@+id/m_max"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/view_statistics_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/m_max"
+        android:text="statisztika betöltése"
+        android:textColor="@color/black"
+        android:layout_marginTop="100dp"
+        app:fontFamily="@font/redhatdisplay"
+        android:textStyle="bold"
+        android:background="?colorPrimary" />
+
+</RelativeLayout>

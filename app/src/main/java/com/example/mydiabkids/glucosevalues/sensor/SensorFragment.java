@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.mydiabkids.R;
 import com.influxdb.client.InfluxDBClient;
@@ -48,7 +49,7 @@ import static com.example.mydiabkids.glucosevalues.sensor.SensorService.isSensor
 public class SensorFragment extends Fragment {
 
     ImageButton startBtn, stopBtn;
-    Button valuesBtn;
+    Button valuesBtn, statisticsBtn;
     TextView currentValue;
     Context context;
     MyHandlerThread myHandlerThread;
@@ -76,6 +77,7 @@ public class SensorFragment extends Fragment {
         setButtonColors();
 
         valuesBtn = view.findViewById(R.id.sensor_values_btn);
+        statisticsBtn = view.findViewById(R.id.statistics_btn);
         currentValue = view.findViewById(R.id.current_value);
         myHandlerThread = new MyHandlerThread("Current sensor value UI update");
 
@@ -132,6 +134,9 @@ public class SensorFragment extends Fragment {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.1.137:3000/goto/lY5w3X1Mz"));
             startActivity(browserIntent);
         });
+
+        statisticsBtn.setOnClickListener(Navigation.createNavigateOnClickListener
+                (R.id.action_sensorFragment_to_statisticsFragment));
     }
 
     @Override
