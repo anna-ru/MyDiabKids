@@ -2,31 +2,25 @@ package com.example.mydiabkids.glucosevalues;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.mydiabkids.R;
 
-import static com.example.mydiabkids.ThemeFragment.BLUE;
-import static com.example.mydiabkids.ThemeFragment.BROWN;
-import static com.example.mydiabkids.ThemeFragment.GREEN;
-import static com.example.mydiabkids.ThemeFragment.ORANGE;
-import static com.example.mydiabkids.ThemeFragment.PINK;
-import static com.example.mydiabkids.ThemeFragment.YELLOW;
+import static com.example.mydiabkids.settings.ThemeFragment.BLUE;
+import static com.example.mydiabkids.settings.ThemeFragment.BROWN;
+import static com.example.mydiabkids.settings.ThemeFragment.GREEN;
+import static com.example.mydiabkids.settings.ThemeFragment.ORANGE;
+import static com.example.mydiabkids.settings.ThemeFragment.PINK;
+import static com.example.mydiabkids.settings.ThemeFragment.YELLOW;
 
 public class ModifyGlValueActivity extends AppCompatActivity {
 

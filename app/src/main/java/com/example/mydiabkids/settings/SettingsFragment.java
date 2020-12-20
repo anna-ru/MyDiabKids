@@ -1,4 +1,4 @@
-package com.example.mydiabkids;
+package com.example.mydiabkids.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.mydiabkids.R;
 
 import static android.content.Context.MODE_PRIVATE;
 

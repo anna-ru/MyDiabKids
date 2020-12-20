@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.mydiabkids.ProfileFragment"
+        android:name="com.example.mydiabkids.settings.ProfileFragment"
         android:label="Profilom"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.mydiabkids.SettingsFragment"
+        android:name="com.example.mydiabkids.settings.SettingsFragment"
         android:label="Beállítások"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -58,22 +58,22 @@
     </fragment>
     <fragment
         android:id="@+id/diababaFragment"
-        android:name="com.example.mydiabkids.DiababaFragment"
+        android:name="com.example.mydiabkids.settings.DiababaFragment"
         android:label="fragment_diababa"
         tools:layout="@layout/fragment_diababa" />
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.example.mydiabkids.NotificationsFragment"
+        android:name="com.example.mydiabkids.settings.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/themeFragment"
-        android:name="com.example.mydiabkids.ThemeFragment"
+        android:name="com.example.mydiabkids.settings.ThemeFragment"
         android:label="fragment_theme"
         tools:layout="@layout/fragment_theme" />
     <fragment
         android:id="@+id/profileSettingsFragment"
-        android:name="com.example.mydiabkids.ProfileSettingsFragment"
+        android:name="com.example.mydiabkids.settings.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
         tools:layout="@layout/fragment_profile_settings" >
         <action

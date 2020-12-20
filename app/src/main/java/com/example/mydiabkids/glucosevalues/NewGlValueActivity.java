@@ -8,13 +8,11 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,12 +24,12 @@ import com.example.mydiabkids.R;
 
 import java.util.Calendar;
 
-import static com.example.mydiabkids.ThemeFragment.BLUE;
-import static com.example.mydiabkids.ThemeFragment.BROWN;
-import static com.example.mydiabkids.ThemeFragment.GREEN;
-import static com.example.mydiabkids.ThemeFragment.ORANGE;
-import static com.example.mydiabkids.ThemeFragment.PINK;
-import static com.example.mydiabkids.ThemeFragment.YELLOW;
+import static com.example.mydiabkids.settings.ThemeFragment.BLUE;
+import static com.example.mydiabkids.settings.ThemeFragment.BROWN;
+import static com.example.mydiabkids.settings.ThemeFragment.GREEN;
+import static com.example.mydiabkids.settings.ThemeFragment.ORANGE;
+import static com.example.mydiabkids.settings.ThemeFragment.PINK;
+import static com.example.mydiabkids.settings.ThemeFragment.YELLOW;
 
 public class NewGlValueActivity extends AppCompatActivity {
 

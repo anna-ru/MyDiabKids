@@ -27,6 +27,8 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static com.example.mydiabkids.glucosevalues.sensor.SensorService.IP;
+
 public class StatisticsFragment extends Fragment {
 
     TextView dAvg, wAvg, mAvg, dMin, wMin, mMin, dMax, wMax, mMax;
@@ -78,7 +80,7 @@ public class StatisticsFragment extends Fragment {
             char[] token = "3NJ0Z0T1NSsJVx3CYNBXFSki7hKZqiSguAa63oHmUNEHvOGd6urEIV99mTptcMnWHXAdku4ZNFfajiUwUDxMPg==".toCharArray();
             String bucket = "GlucoseValues";
             String org = "MyDiabKids";
-            InfluxDBClient client = InfluxDBClientFactory.create("http://192.168.1.137:8086", token, org, bucket);
+            InfluxDBClient client = InfluxDBClientFactory.create(IP + ":8086", token, org, bucket);
 
             Instant stopTime = Instant.now();
             Instant startTimeDay, startTimeWeek, startTimeMonth;

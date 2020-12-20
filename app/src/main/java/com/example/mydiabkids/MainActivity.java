@@ -1,26 +1,23 @@
 package com.example.mydiabkids;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,17 +28,12 @@ import com.example.mydiabkids.glucosevalues.sensor.SensorFragment;
 import com.example.mydiabkids.glucosevalues.sensor.SensorService;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static com.example.mydiabkids.ThemeFragment.BLUE;
-import static com.example.mydiabkids.ThemeFragment.BROWN;
-import static com.example.mydiabkids.ThemeFragment.GREEN;
-import static com.example.mydiabkids.ThemeFragment.ORANGE;
-import static com.example.mydiabkids.ThemeFragment.PINK;
-import static com.example.mydiabkids.ThemeFragment.YELLOW;
+import static com.example.mydiabkids.settings.ThemeFragment.BLUE;
+import static com.example.mydiabkids.settings.ThemeFragment.BROWN;
+import static com.example.mydiabkids.settings.ThemeFragment.GREEN;
+import static com.example.mydiabkids.settings.ThemeFragment.ORANGE;
+import static com.example.mydiabkids.settings.ThemeFragment.PINK;
+import static com.example.mydiabkids.settings.ThemeFragment.YELLOW;
 import static com.example.mydiabkids.glucosevalues.sensor.SensorService.isSensorRunning;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private SensorService mService;
     private boolean isBound = false;
     Intent serviceIntent;
+    public static final String CHANNEL_ID = "First channel";
+    NotificationManagerCompat notificationManager;
+    NotificationCompat.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +62,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         NavigationUI.setupWithNavController(navView, navController);
 
+        createNotificationChannel();
+
         serviceIntent = new Intent(this, SensorService.class);
         startService(serviceIntent);
         bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
+
+        notificationManager = NotificationManagerCompat.from(this);
+        Intent intent = new Intent(this, SensorFragment.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.blood)
+                .setContentTitle("Vigyázat!")
+                .setContentText("Ha bezárod az alkalmazást, nem kapsz értesítéseket a szenzortól!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
     }
 
     @Override
     protected void onDestroy() {
+        notificationManager.notify(3, builder.build());
         stopService(serviceIntent);
         unbindService(connection);
         isBound = false;
@@ -131,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController)
                 || super.onOptionsItemSelected(item);
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "NotificationChannel";
+            String description = "Channel for notifications";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

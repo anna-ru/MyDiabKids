@@ -4,12 +4,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".NotificationsFragment">
+    tools:context=".settings.NotificationsFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Értesítések"
-        style="@style/TitleText"/>
+        style="@style/TitleText"
+        android:id="@+id/notification_txt"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notification_txt"
+        android:id="@+id/low_view"
+        app:cardBackgroundColor="?colorPrimary"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Alacsony vércukor értesítés"
+            style="@style/BigTextStyle"
+            android:padding="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            style="@style/BigTextStyle"
+            android:padding="10dp"
+            android:layout_gravity="right"
+            android:id="@+id/low_bg"
+            android:textColor="@color/black"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/low_view"
+        android:id="@+id/high_view"
+        app:cardBackgroundColor="?colorPrimary"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Magas vércukor értesítés"
+            style="@style/BigTextStyle"
+            android:padding="10dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            style="@style/BigTextStyle"
+            android:padding="10dp"
+            android:layout_gravity="right"
+            android:id="@+id/high_bg"
+            android:textColor="@color/black"/>
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

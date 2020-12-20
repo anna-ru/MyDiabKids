@@ -1,4 +1,4 @@
-package com.example.mydiabkids;
+package com.example.mydiabkids.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,6 +17,8 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
+import com.example.mydiabkids.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

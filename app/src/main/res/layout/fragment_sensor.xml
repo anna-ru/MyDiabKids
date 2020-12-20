@@ -13,6 +13,16 @@
         style="@style/TitleText"
         android:id="@+id/sensor_title"/>
 
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:background="@drawable/blood"
+        android:scaleType="fitCenter"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/calibration_btn"/>
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

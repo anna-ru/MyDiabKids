@@ -7,19 +7,18 @@ import android.view.LayoutInflater;
 import android.widget.Checkable;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.example.mydiabkids.R;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.mydiabkids.ThemeFragment.BLUE;
-import static com.example.mydiabkids.ThemeFragment.BROWN;
-import static com.example.mydiabkids.ThemeFragment.GREEN;
-import static com.example.mydiabkids.ThemeFragment.ORANGE;
-import static com.example.mydiabkids.ThemeFragment.PINK;
-import static com.example.mydiabkids.ThemeFragment.YELLOW;
+import static com.example.mydiabkids.settings.ThemeFragment.BLUE;
+import static com.example.mydiabkids.settings.ThemeFragment.BROWN;
+import static com.example.mydiabkids.settings.ThemeFragment.GREEN;
+import static com.example.mydiabkids.settings.ThemeFragment.ORANGE;
+import static com.example.mydiabkids.settings.ThemeFragment.PINK;
+import static com.example.mydiabkids.settings.ThemeFragment.YELLOW;
 
 public class CheckableCardView extends CardView implements Checkable {
     private boolean isChecked = false;

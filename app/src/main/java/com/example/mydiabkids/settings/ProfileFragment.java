@@ -1,26 +1,18 @@
-package com.example.mydiabkids;
+package com.example.mydiabkids.settings;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import com.example.mydiabkids.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,22 +23,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.mydiabkids.ProfileSettingsFragment.BASIS;
-import static com.example.mydiabkids.ProfileSettingsFragment.BIRTH_DATE;
-import static com.example.mydiabkids.ProfileSettingsFragment.BOLUS;
-import static com.example.mydiabkids.ProfileSettingsFragment.DEMAIL;
-import static com.example.mydiabkids.ProfileSettingsFragment.DIAB_TYPE;
-import static com.example.mydiabkids.ProfileSettingsFragment.DNAME;
-import static com.example.mydiabkids.ProfileSettingsFragment.DTEL;
-import static com.example.mydiabkids.ProfileSettingsFragment.FILE_NAME;
-import static com.example.mydiabkids.ProfileSettingsFragment.HELPERS;
-import static com.example.mydiabkids.ProfileSettingsFragment.NAME;
-import static com.example.mydiabkids.ProfileSettingsFragment.PEMAIL;
-import static com.example.mydiabkids.ProfileSettingsFragment.PNAME;
-import static com.example.mydiabkids.ProfileSettingsFragment.PTEL;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.BASIS;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.BIRTH_DATE;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.BOLUS;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.DEMAIL;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.DIAB_TYPE;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.DNAME;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.DTEL;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.FILE_NAME;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.HELPERS;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.NAME;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.PEMAIL;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.PNAME;
+import static com.example.mydiabkids.settings.ProfileSettingsFragment.PTEL;
 
 
 public class ProfileFragment extends Fragment {

@@ -45,8 +45,6 @@ import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.MODIFY_
 
 public class GlucoseValuesFragment extends Fragment {
 
-    //TODO: statistics
-    //TODO: export
     //TODO: sending
 
     private GlValuesViewModel glValuesViewModel;

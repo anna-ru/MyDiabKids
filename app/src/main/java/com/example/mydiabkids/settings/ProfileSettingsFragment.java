@@ -1,4 +1,4 @@
-package com.example.mydiabkids;
+package com.example.mydiabkids.settings;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mydiabkids.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

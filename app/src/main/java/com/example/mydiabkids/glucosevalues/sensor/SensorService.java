@@ -1,14 +1,19 @@
 package com.example.mydiabkids.glucosevalues.sensor;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import com.example.mydiabkids.R;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.InfluxDBClientFactory;
 import com.influxdb.client.QueryApi;
@@ -25,18 +30,27 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.example.mydiabkids.MainActivity.CHANNEL_ID;
+import static com.example.mydiabkids.settings.NotificationsFragment.highPrefStr;
+import static com.example.mydiabkids.settings.NotificationsFragment.lowPrefStr;
+
 public class SensorService extends Service {
+
+    public static final String IP = "http://192.168.1.110";
 
     private final IBinder binder = new SensorBinder();
     public static AtomicBoolean isSensorRunning = new AtomicBoolean();
+    private AtomicBoolean isInitialized = new AtomicBoolean();
     private InfluxDBClient client;
 
     private int currHour;
     private double currValue = 0.0;
+    private double initValue = 0.0;
     private String currentDisplayedValue;
     private final ZoneId id = ZoneId.of("Europe/Budapest");
     private final DecimalFormat df = new DecimalFormat("#.#");
     private MyHandlerThread myHandlerThread = new MyHandlerThread("SensorService");
+    Context context;
 
     @Nullable
     @Override
@@ -59,21 +73,10 @@ public class SensorService extends Service {
 
     public synchronized void startSensor(){
         Log.e("Service", "Sensor started");
+        isInitialized.set(false);
         myHandlerThread.start();
         myHandlerThread.prepareHandler();
         myHandlerThread.postTask(sensor);
-    }
-
-    public String getCurrentDisplayedValue(){
-        return currentDisplayedValue;
-    }
-
-    private void setCurrentDisplayedValue(double value){
-        currentDisplayedValue = df.format(value);
-    }
-
-    public void setCurrentValue(double value){
-        currValue = value;
     }
 
     public void stopSensor(){
@@ -81,6 +84,44 @@ public class SensorService extends Service {
         client.close();
         myHandlerThread.removeCallback(sensor);
         myHandlerThread.quit();
+    }
+
+    private void buildNotification(int id){
+        context = getApplicationContext();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        Intent intent = new Intent(context, SensorFragment.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        switch (id){
+            case 1:
+                NotificationCompat.Builder lowBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.blood)
+                        .setContentTitle("Alacsony vércukor: " + currentDisplayedValue + "!")
+                        .setContentText("Ellenőrizd a vércukrod!")
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .setOnlyAlertOnce(true);
+                notificationManager.notify(id, lowBuilder.build());
+                break;
+            case 2:
+                NotificationCompat.Builder highBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.blood)
+                        .setContentTitle("Magas vércukor: " + currentDisplayedValue + "!")
+                        .setContentText("Ellenőrizd a vércukrod!")
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .setOnlyAlertOnce(true);
+
+                notificationManager.notify(id, highBuilder.build());
+                break;
+        }
+    }
+
+    public void calibrate(double value){
+        initValue = value;
+        currValue = initValue;
     }
 
     private final Runnable sensor = new Runnable() {
@@ -95,15 +136,26 @@ public class SensorService extends Service {
 
         @Override
         public void run() {
+            context = getApplicationContext();
+
+            SharedPreferences lowPref, highPref;
+            lowPref = context.getSharedPreferences(lowPrefStr, MODE_PRIVATE);
+            highPref = context.getSharedPreferences(highPrefStr, MODE_PRIVATE);
+            String lowValue = lowPref.getString(lowPrefStr, "0.0");
+            String highValue = highPref.getString(highPrefStr, "0.0");
+            double low, high;
+            low = Double.parseDouble(lowValue);
+            high = Double.parseDouble(highValue);
+
             isSensorRunning.set(true);
-            client = InfluxDBClientFactory.create("http://192.168.1.137:8086", token, org, bucket);
+            client = InfluxDBClientFactory.create(IP + ":8086", token, org, bucket);
             try{
                 writeApi = client.getWriteApi();
             } catch (Exception e){
                 Log.e("InfluxDB", "WriteApi exception");
             }
 
-            if(currValue == 0.0){
+            if(initValue < 1){
                 String query = "from(bucket: \"GlucoseValues\") |> range(start: -10m) |> last()";
                 try{
                     QueryApi queryApi = client.getQueryApi();
@@ -111,17 +163,26 @@ public class SensorService extends Service {
                     for (FluxTable fluxTable : tables) {
                         List<FluxRecord> records = fluxTable.getRecords();
                         for (FluxRecord fluxRecord : records) {
-                            currValue = (double) fluxRecord.getValueByKey("_value");
-                            Log.e("Service", "initial value: " + currValue);
+                            initValue = (double) fluxRecord.getValueByKey("_value");
+                            Log.e("Service", "initial value: " + initValue);
                         }
                     }
-                    setCurrentDisplayedValue(currValue);
+                    if(initValue >= 1) {
+                        currValue = initValue;
+                        setCurrentDisplayedValue(initValue);
+                    }
+                    isInitialized.set(true);
                 }catch (Exception e){
                     Log.e("SensorService", e.getMessage());
                     isSensorRunning.set(false);
+                    isInitialized.set(true);
                 }
-
             }
+
+            while(initValue < 1){
+                //Waiting for calibration
+            }
+            //if(isInitialized.get() && initValue >= 1) calibrate(initValue);
 
             if(isSensorRunning.get()) {
                 //Get current hour
@@ -138,21 +199,16 @@ public class SensorService extends Service {
 
                     //Get the latest value and write it to the UI
                     setCurrentDisplayedValue(currValue);
+                    if(currValue <= low){
+                        buildNotification(1);
+                    } else if(currValue >= high){
+                        buildNotification(2);
+                    }
 
                 }
-                //Sending values every minute
-                /*try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    client.close();
-                    isSensorRunning.set(false);
-                    Thread.currentThread().interrupt();
-                    return;
-                }*/
                 myHandlerThread.postDelayed(this, 10000);
             }
-
+            client.close();
         }
     };
 
@@ -184,5 +240,30 @@ public class SensorService extends Service {
             currValue += d;
         }
         Log.e("Sensor data", "Generated value: " + currValue);
+    }
+
+
+    public String getCurrentDisplayedValue(){
+        return currentDisplayedValue;
+    }
+
+    private void setCurrentDisplayedValue(double value){
+        currentDisplayedValue = df.format(value);
+    }
+
+    public void setCurrentValue(double value){
+        currValue = value;
+    }
+
+    public double getCurrValue() {
+        return currValue;
+    }
+
+    public double getInitValue() {
+        return initValue;
+    }
+
+    public boolean getIsInitialized() {
+        return isInitialized.get();
     }
 }
