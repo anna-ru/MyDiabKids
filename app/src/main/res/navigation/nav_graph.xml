@@ -75,11 +75,7 @@
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.mydiabkids.settings.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
-        tools:layout="@layout/fragment_profile_settings" >
-        <action
-            android:id="@+id/action_profileSettingsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_profile_settings" />
     <fragment
         android:id="@+id/sensorFragment"
         android:name="com.example.mydiabkids.glucosevalues.sensor.SensorFragment"

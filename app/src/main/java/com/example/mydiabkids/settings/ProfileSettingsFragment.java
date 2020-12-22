@@ -88,14 +88,11 @@ public class ProfileSettingsFragment extends Fragment {
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
         int mDay = c.get(Calendar.DAY_OF_MONTH);
-        birthTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(context,
-                        (view1, year, month, day) ->
-                                birthTV.setText(year + "." + (month+1) + "." + day), mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
+        birthTV.setOnClickListener(view12 -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(context,
+                    (view1, year, month, day) ->
+                            birthTV.setText(year + "." + (month+1) + "." + day), mYear, mMonth, mDay);
+            datePickerDialog.show();
         });
 
         diabTypeSpinner = view.findViewById(R.id.diab_type_spinner);
@@ -115,38 +112,34 @@ public class ProfileSettingsFragment extends Fragment {
         save = view.findViewById(R.id.profile_save_btn);
         cancel = view.findViewById(R.id.profile_cancel_btn);
 
-        cancel.setOnClickListener(Navigation.createNavigateOnClickListener(
-                R.id.action_profileSettingsFragment_to_profileFragment));
+        cancel.setOnClickListener(view13 -> getActivity().onBackPressed());
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name, birthDate, diabType, bolus, basis, helpers, pName, pEmail, pTel, dName, dEmail, dTel;
-                name = nameEdit.getText().toString();
-                birthDate = birthTV.getText().toString();
-                diabType = diabTypeSpinner.getSelectedItem().toString();
-                bolus = bolusEdit.getText().toString();
-                basis = basisEdit.getText().toString();
-                helpers = helpersEdit.getText().toString();
-                pName = pNameEdit.getText().toString();
-                pEmail = pEmailEdit.getText().toString();
-                pTel = pTelEdit.getText().toString();
-                dName = dNameEdit.getText().toString();
-                dEmail = dEmailEdit.getText().toString();
-                dTel = dTelEdit.getText().toString();
+                save.setOnClickListener(view14 -> {
+                    String name, birthDate, diabType, bolus, basis, helpers, pName, pEmail, pTel, dName, dEmail, dTel;
+                    name = nameEdit.getText().toString();
+                    birthDate = birthTV.getText().toString();
+                    diabType = diabTypeSpinner.getSelectedItem().toString();
+                    bolus = bolusEdit.getText().toString();
+                    basis = basisEdit.getText().toString();
+                    helpers = helpersEdit.getText().toString();
+                    pName = pNameEdit.getText().toString();
+                    pEmail = pEmailEdit.getText().toString();
+                    pTel = pTelEdit.getText().toString();
+                    dName = dNameEdit.getText().toString();
+                    dEmail = dEmailEdit.getText().toString();
+                    dTel = dTelEdit.getText().toString();
 
-                try {
-                    JSONObject jsonObject = createJson(name, birthDate, diabType, bolus, basis, helpers, pName, pEmail,
-                            pTel, dName, dEmail, dTel);
-                    writeToJsonFile(jsonObject);
-                    Toast.makeText(context, "Beállítások mentve", Toast.LENGTH_SHORT).show();
-                } catch (JSONException | IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Valami hiba történt", Toast.LENGTH_SHORT).show();
-                }
-                Navigation.findNavController(view).navigate(R.id.action_profileSettingsFragment_to_profileFragment);
-            }
-        });
+                    try {
+                        JSONObject jsonObject = createJson(name, birthDate, diabType, bolus, basis, helpers, pName, pEmail,
+                                pTel, dName, dEmail, dTel);
+                        writeToJsonFile(jsonObject);
+                        Toast.makeText(context, "Beállítások mentve", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context, "Valami hiba történt", Toast.LENGTH_SHORT).show();
+                    }
+                    getActivity().onBackPressed();
+                });
 
         return view;
     }
