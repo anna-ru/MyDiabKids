@@ -1,0 +1,100 @@
+name: Android CI
+
+on:
+  push:
+    branches: 
+      - '*'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v1
+    - name: Setup Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+    - name: Run all unit tests
+      run: ./gradlew test --stacktrace
+      working-directory: ./
+    
+    - name: Upload unit test results to artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: unit-tests-results
+        path: app/build/reports/tests/testDebugUnitTest/index.html
+ 
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v1
+    - name: Setup Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+    - name: Build the project
+      run: ./gradlew build --stacktrace
+      working-directory: ./
+      
+  apk:
+    name: Generate APK
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v1
+    - name: Setup Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+    - name: Generate APK
+      run: ./gradlew assemble --stacktrace
+      working-directory: ./
+      
+    - name: Upload APK to artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: app
+        path: app/build/outputs/apk/debug/app-debug.apk
+
+
+  javadoc:
+    name: Javadoc
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v1
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Building Gradle
+        run: ./gradlew build --stacktrace
+        working-directory: ./
+      - name: Run javadoc
+        run: ./gradlew javadoc
+        working-directory: ./
+      - name: Upload javadoc to artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: javadoc
+          path: app/build/docs/javadoc
+
