@@ -71,30 +71,3 @@ jobs:
       with:
         name: app
         path: app/build/outputs/apk/debug/app-debug.apk
-
-
-  javadoc:
-    name: Javadoc
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v1
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      - name: Building Gradle
-        run: ./gradlew build --stacktrace
-        working-directory: ./
-      - name: Run javadoc
-        run: ./gradlew javadoc
-        working-directory: ./
-      - name: Upload javadoc to artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: javadoc
-          path: app/build/docs/javadoc
-
