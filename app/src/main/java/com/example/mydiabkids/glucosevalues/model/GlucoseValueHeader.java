@@ -6,12 +6,12 @@ import com.thoughtbot.expandablecheckrecyclerview.models.SingleCheckExpandableGr
 
 import java.util.List;
 
-public class GlucoseValue extends SingleCheckExpandableGroup {
-    public GlucoseValue(String title, List<Value> items) {
+public class GlucoseValueHeader extends SingleCheckExpandableGroup {
+    public GlucoseValueHeader(String title, List<GlucoseValueDetails> items) {
         super(title, items);
     }
 
-    protected GlucoseValue(Parcel in) {
+    protected GlucoseValueHeader(Parcel in) {
         super(in);
     }
 
@@ -25,15 +25,15 @@ public class GlucoseValue extends SingleCheckExpandableGroup {
         return 0;
     }
 
-    public static final Creator<GlucoseValue> CREATOR = new Creator<GlucoseValue>() {
+    public static final Creator<GlucoseValueHeader> CREATOR = new Creator<GlucoseValueHeader>() {
         @Override
-        public GlucoseValue createFromParcel(Parcel in) {
-            return new GlucoseValue(in);
+        public GlucoseValueHeader createFromParcel(Parcel in) {
+            return new GlucoseValueHeader(in);
         }
 
         @Override
-        public GlucoseValue[] newArray(int size) {
-            return new GlucoseValue[size];
+        public GlucoseValueHeader[] newArray(int size) {
+            return new GlucoseValueHeader[size];
         }
     };
 }

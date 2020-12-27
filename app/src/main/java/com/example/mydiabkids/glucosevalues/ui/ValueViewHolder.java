@@ -5,7 +5,7 @@ import android.widget.Checkable;
 import android.widget.TextView;
 
 import com.example.mydiabkids.R;
-import com.example.mydiabkids.glucosevalues.model.Value;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
 import com.thoughtbot.expandablecheckrecyclerview.viewholders.CheckableChildViewHolder;
 
 class ValueViewHolder extends CheckableChildViewHolder {
@@ -29,12 +29,12 @@ class ValueViewHolder extends CheckableChildViewHolder {
         return checkableCardView;
     }
 
-    public void bind(Value value){
-        time.setText(value.getTime());
-        insulin.setText(String.valueOf(value.getInsulin()));
-        this.value.setText(String.valueOf(value.getGl_value()));
-        eating.setText(value.getBefore_eating());
-        type.setText(value.getInsulin_type());
-        notes.setText(value.getNotes());
+    public void bind(GlucoseValueDetails glucoseValueDetails){
+        time.setText(glucoseValueDetails.getTime());
+        insulin.setText(String.valueOf(glucoseValueDetails.getInsulin()));
+        this.value.setText(String.valueOf(glucoseValueDetails.getGl_value()));
+        eating.setText(glucoseValueDetails.getBefore_eating());
+        type.setText(glucoseValueDetails.getInsulin_type());
+        notes.setText(glucoseValueDetails.getNotes());
     }
 }

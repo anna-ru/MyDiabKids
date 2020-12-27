@@ -5,8 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mydiabkids.R;
-import com.example.mydiabkids.glucosevalues.model.GlucoseValue;
-import com.example.mydiabkids.glucosevalues.model.Value;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueHeader;
 import com.thoughtbot.expandablecheckrecyclerview.CheckableChildRecyclerViewAdapter;
 import com.thoughtbot.expandablecheckrecyclerview.models.CheckedExpandableGroup;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GlucoseValueAdapter extends CheckableChildRecyclerViewAdapter<GlValuesViewHolder, ValueViewHolder> {
 
-    public GlucoseValueAdapter(List<GlucoseValue> groups) {
+    public GlucoseValueAdapter(List<GlucoseValueHeader> groups) {
         super(groups);
     }
 
@@ -33,13 +33,13 @@ public class GlucoseValueAdapter extends CheckableChildRecyclerViewAdapter<GlVal
 
     @Override
     public void onBindCheckChildViewHolder(ValueViewHolder holder, int flatPosition, CheckedExpandableGroup group, int childIndex) {
-        Value value = (Value) ((GlucoseValue) group).getItems().get(childIndex);
-        holder.bind(value);
+        GlucoseValueDetails glucoseValueDetails = (GlucoseValueDetails) ((GlucoseValueHeader) group).getItems().get(childIndex);
+        holder.bind(glucoseValueDetails);
     }
 
     @Override
     public void onBindGroupViewHolder(GlValuesViewHolder holder, int flatPosition, ExpandableGroup group) {
-        GlucoseValue value = (GlucoseValue) group;
+        GlucoseValueHeader value = (GlucoseValueHeader) group;
         holder.bind(value);
     }
 

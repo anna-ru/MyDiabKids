@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mydiabkids.R;
-import com.example.mydiabkids.glucosevalues.model.GlucoseValue;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueHeader;
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 
 class GlValuesViewHolder extends GroupViewHolder {
@@ -16,7 +16,7 @@ class GlValuesViewHolder extends GroupViewHolder {
         date = itemView.findViewById(R.id.date_edit);
     }
 
-    void bind(GlucoseValue glucoseValue){
-        date.setText(glucoseValue.getTitle());
+    void bind(GlucoseValueHeader glucoseValueHeader){
+        date.setText(glucoseValueHeader.getTitle());
     }
 }

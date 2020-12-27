@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.mydiabkids.glucosevalues.model.Converter;
-import com.example.mydiabkids.glucosevalues.model.Value;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class GlucoseValueEntity {
     private String date;
 
     @ColumnInfo(name = "values")
-    private List<Value> glucoseValues;
+    private List<GlucoseValueDetails> glucoseValues;
 
     public GlucoseValueEntity(String date) {
         this.date = date;
@@ -36,11 +36,11 @@ public class GlucoseValueEntity {
         this.date = date;
     }
 
-    public List<Value> getGlucoseValues() {
+    public List<GlucoseValueDetails> getGlucoseValues() {
         return glucoseValues;
     }
 
-    public void setGlucoseValues(List<Value> glucoseValues) {
+    public void setGlucoseValues(List<GlucoseValueDetails> glucoseValues) {
         this.glucoseValues = glucoseValues;
     }
 

@@ -2,7 +2,6 @@ package com.example.mydiabkids.glucosevalues.model;
 
 import androidx.room.TypeConverter;
 
-import com.example.mydiabkids.glucosevalues.model.Value;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -15,14 +14,14 @@ public class Converter {
 
     @TypeConverter
     @JvmStatic
-    public List<Value> stringToSomeObjectList(String data){
-        Type listType = new TypeToken<List<Value>>() {}.getType();
+    public List<GlucoseValueDetails> stringToSomeObjectList(String data){
+        Type listType = new TypeToken<List<GlucoseValueDetails>>() {}.getType();
         return gson.fromJson(data, listType);
     }
 
     @TypeConverter
     @JvmStatic
-    public String someObjectListToString(List<Value> list){
+    public String someObjectListToString(List<GlucoseValueDetails> list){
         return gson.toJson(list);
     }
 }

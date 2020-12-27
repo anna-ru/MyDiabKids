@@ -24,9 +24,9 @@ import com.example.mydiabkids.R;
 import com.example.mydiabkids.glucosevalues.ModifyGlValueActivity;
 import com.example.mydiabkids.glucosevalues.NewGlValueActivity;
 import com.example.mydiabkids.glucosevalues.model.GlValuesViewModel;
-import com.example.mydiabkids.glucosevalues.model.GlucoseValue;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueHeader;
 import com.example.mydiabkids.glucosevalues.db.GlucoseValueEntity;
-import com.example.mydiabkids.glucosevalues.model.Value;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.thoughtbot.expandablecheckrecyclerview.listeners.OnCheckChildClickListener;
 import com.thoughtbot.expandablecheckrecyclerview.models.CheckedExpandableGroup;
@@ -51,7 +51,7 @@ public class GlucoseValuesFragment extends Fragment {
     private GlValuesViewModel glValuesViewModel;
     public static final int NEW_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE = 0;
     public static final int MODIFY_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE = 1;
-    private List<GlucoseValue> glucoseValues = new ArrayList<>();
+    private List<GlucoseValueHeader> glucoseValueHeaders = new ArrayList<>();
 
     public GlucoseValuesFragment() {
         // Required empty public constructor
@@ -73,13 +73,13 @@ public class GlucoseValuesFragment extends Fragment {
         glValuesViewModel.getAllValues().observe(getViewLifecycleOwner(), new Observer<List<GlucoseValueEntity>>() {
             @Override
             public void onChanged(List<GlucoseValueEntity> glucoseValueEntities) {
-                glucoseValues.clear();
+                glucoseValueHeaders.clear();
                 for (GlucoseValueEntity value: glucoseValueEntities) {
                     Collections.sort(value.getGlucoseValues(), Collections.reverseOrder());
-                    GlucoseValue glucoseValue = new GlucoseValue(value.getDate(), value.getGlucoseValues());
-                    glucoseValues.add(glucoseValue);
+                    GlucoseValueHeader glucoseValueHeader = new GlucoseValueHeader(value.getDate(), value.getGlucoseValues());
+                    glucoseValueHeaders.add(glucoseValueHeader);
                 }
-                GlucoseValueAdapter adapter = new GlucoseValueAdapter(glucoseValues);
+                GlucoseValueAdapter adapter = new GlucoseValueAdapter(glucoseValueHeaders);
                 adapter.setChildClickListener(new ChildClickListener(adapter));
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setAdapter(adapter);
@@ -114,12 +114,12 @@ public class GlucoseValuesFragment extends Fragment {
             gl_value = data.getDoubleExtra(NewGlValueActivity.EXTRA_VALUE, 0);
             insulin = data.getDoubleExtra(NewGlValueActivity.EXTRA_INSULIN, 0);
 
-            Value value = new Value(time, type, notes, gl_value, insulin, eating);
+            GlucoseValueDetails glucoseValueDetails = new GlucoseValueDetails(time, type, notes, gl_value, insulin, eating);
 
-            GlucoseValue glucoseValue = glucoseValueWithDateAlreadyExists(date);
-            if(glucoseValue != null){
-                List<Value> values = glucoseValue.getItems();
-                values.add(value);
+            GlucoseValueHeader glucoseValueHeader = glucoseValueWithDateAlreadyExists(date);
+            if(glucoseValueHeader != null){
+                List<GlucoseValueDetails> values = glucoseValueHeader.getItems();
+                values.add(glucoseValueDetails);
                 Collections.sort(values, Collections.reverseOrder());
                 insertToDate(values, date);
                 Toast.makeText(
@@ -127,7 +127,7 @@ public class GlucoseValuesFragment extends Fragment {
                         "Új érték ehhez a dátumhoz: " + date,
                         Toast.LENGTH_LONG).show();
             } else {
-                insertNew(value, date);
+                insertNew(glucoseValueDetails, date);
                 Toast.makeText(
                         getContext(),
                         "Új érték új dátummal (" + date + ") mentve",
@@ -144,9 +144,9 @@ public class GlucoseValuesFragment extends Fragment {
             gl_value = data.getDoubleExtra(MODIFY_VALUE, 0);
             insulin = data.getDoubleExtra(MODIFY_INSULIN, 0);
 
-            Value value = new Value(time, type, notes, gl_value, insulin, eating);
-            ArrayList<Value> values = new ArrayList<>();
-            values.add(value);
+            GlucoseValueDetails glucoseValueDetails = new GlucoseValueDetails(time, type, notes, gl_value, insulin, eating);
+            ArrayList<GlucoseValueDetails> values = new ArrayList<>();
+            values.add(glucoseValueDetails);
 
             GlucoseValueEntity glValue = new GlucoseValueEntity(date);
             glValue.setGlucoseValues(values);
@@ -163,28 +163,28 @@ public class GlucoseValuesFragment extends Fragment {
         }
     }
 
-    public  GlucoseValue glucoseValueWithDateAlreadyExists(String date){
-        for (GlucoseValue glucoseValue : glucoseValues) {
-            if(glucoseValue.getTitle().equals(date)){
-                return glucoseValue;
+    public GlucoseValueHeader glucoseValueWithDateAlreadyExists(String date){
+        for (GlucoseValueHeader glucoseValueHeader : glucoseValueHeaders) {
+            if(glucoseValueHeader.getTitle().equals(date)){
+                return glucoseValueHeader;
             }
         }
         return null;
     }
 
     //New values added to database
-    public void insertNew(Value value, String date){
-        ArrayList<Value> values = new ArrayList<>();
-        values.add(value);
+    public void insertNew(GlucoseValueDetails glucoseValueDetails, String date){
+        ArrayList<GlucoseValueDetails> values = new ArrayList<>();
+        values.add(glucoseValueDetails);
 
         GlucoseValueEntity glValue = new GlucoseValueEntity(date);
         glValue.setGlucoseValues(values);
         glValuesViewModel.insert(glValue);
     }
 
-    public void insertToDate(List<Value> values, String date){
+    public void insertToDate(List<GlucoseValueDetails> glucoseValueDetails, String date){
         GlucoseValueEntity glValue = new GlucoseValueEntity(date);
-        glValue.setGlucoseValues(values);
+        glValue.setGlucoseValues(glucoseValueDetails);
         glValuesViewModel.insertReplace(glValue);
     }
 
@@ -217,15 +217,15 @@ public class GlucoseValuesFragment extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(getContext(),
                             ModifyGlValueActivity.class);
-                    GlucoseValue glucoseValue = (GlucoseValue) group;
-                    Value value = (Value) ((GlucoseValue) group).getItems().get(childIndex);
-                    intent.putExtra(MODIFY_DATE, glucoseValue.getTitle());
-                    intent.putExtra(MODIFY_TIME, value.getTime());
-                    intent.putExtra(MODIFY_VALUE, value.getGl_value());
-                    intent.putExtra(MODIFY_INSULIN, value.getInsulin());
-                    intent.putExtra(MODIFY_TYPE, value.getInsulin_type());
-                    intent.putExtra(MODIFY_EATING, value.getBefore_eating());
-                    intent.putExtra(MODIFY_NOTE, value.getNotes());
+                    GlucoseValueHeader glucoseValueHeader = (GlucoseValueHeader) group;
+                    GlucoseValueDetails glucoseValueDetails = (GlucoseValueDetails) ((GlucoseValueHeader) group).getItems().get(childIndex);
+                    intent.putExtra(MODIFY_DATE, glucoseValueHeader.getTitle());
+                    intent.putExtra(MODIFY_TIME, glucoseValueDetails.getTime());
+                    intent.putExtra(MODIFY_VALUE, glucoseValueDetails.getGl_value());
+                    intent.putExtra(MODIFY_INSULIN, glucoseValueDetails.getInsulin());
+                    intent.putExtra(MODIFY_TYPE, glucoseValueDetails.getInsulin_type());
+                    intent.putExtra(MODIFY_EATING, glucoseValueDetails.getBefore_eating());
+                    intent.putExtra(MODIFY_NOTE, glucoseValueDetails.getNotes());
                     startActivityForResult(intent, MODIFY_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE);
                 }
             }).setNegativeButton("Törlés", new DialogInterface.OnClickListener() {
@@ -240,20 +240,20 @@ public class GlucoseValuesFragment extends Fragment {
         }
     }
 
-    private void deleteIfOnlyOneValueExistsWithThisDate(Value value, GlucoseValue glucoseValue){
-        GlucoseValueEntity entity = new GlucoseValueEntity(glucoseValue.getTitle());
-        ArrayList<Value> values = new ArrayList<>();
-        values.add(value);
+    private void deleteIfOnlyOneValueExistsWithThisDate(GlucoseValueDetails glucoseValueDetails, GlucoseValueHeader glucoseValueHeader){
+        GlucoseValueEntity entity = new GlucoseValueEntity(glucoseValueHeader.getTitle());
+        ArrayList<GlucoseValueDetails> values = new ArrayList<>();
+        values.add(glucoseValueDetails);
         entity.setGlucoseValues(values);
         glValuesViewModel.deleteValue(entity);
     }
 
-    private void deleteIfMoreValuesExistWithThisDate(Value value, GlucoseValue glucoseValue){
-        GlucoseValueEntity entity = new GlucoseValueEntity(glucoseValue.getTitle());
-        List<Value> values = ((List<Value>) glucoseValue.getItems());
-        values.remove(value);
+    private void deleteIfMoreValuesExistWithThisDate(GlucoseValueDetails glucoseValueDetails, GlucoseValueHeader glucoseValueHeader){
+        GlucoseValueEntity entity = new GlucoseValueEntity(glucoseValueHeader.getTitle());
+        List<GlucoseValueDetails> values = ((List<GlucoseValueDetails>) glucoseValueHeader.getItems());
+        values.remove(glucoseValueDetails);
         entity.setGlucoseValues(values);
-        insertToDate(values, glucoseValue.getTitle());
+        insertToDate(values, glucoseValueHeader.getTitle());
     }
 
     private void confirmDelete(CheckedExpandableGroup group, int childIndex){
@@ -263,13 +263,13 @@ public class GlucoseValuesFragment extends Fragment {
                 .setPositiveButton("Igen", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        GlucoseValue glucoseValue = (GlucoseValue) group;
-                        Value value = (Value) ((GlucoseValue) group).getItems().get(childIndex);
-                        int itemCount = ((GlucoseValue) group).getItems().size();
+                        GlucoseValueHeader glucoseValueHeader = (GlucoseValueHeader) group;
+                        GlucoseValueDetails glucoseValueDetails = (GlucoseValueDetails) ((GlucoseValueHeader) group).getItems().get(childIndex);
+                        int itemCount = ((GlucoseValueHeader) group).getItems().size();
                         if(itemCount == 1){
-                            deleteIfOnlyOneValueExistsWithThisDate(value, glucoseValue);
+                            deleteIfOnlyOneValueExistsWithThisDate(glucoseValueDetails, glucoseValueHeader);
                         } else if(itemCount > 1){
-                            deleteIfMoreValuesExistWithThisDate(value, glucoseValue);
+                            deleteIfMoreValuesExistWithThisDate(glucoseValueDetails, glucoseValueHeader);
                         }
                         Toast.makeText(
                                 getContext(),

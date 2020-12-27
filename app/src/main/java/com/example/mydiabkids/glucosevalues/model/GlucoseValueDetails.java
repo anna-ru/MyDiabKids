@@ -3,7 +3,7 @@ package com.example.mydiabkids.glucosevalues.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Value implements Parcelable, Comparable<Value> {
+public class GlucoseValueDetails implements Parcelable, Comparable<GlucoseValueDetails> {
 
     private String time;
     private String insulin_type;
@@ -12,8 +12,8 @@ public class Value implements Parcelable, Comparable<Value> {
     private double insulin;
     private String before_eating;
 
-    public Value(String time, String insulin_type, String notes, double gl_value,
-                                  double insulin, String before_eating) {
+    public GlucoseValueDetails(String time, String insulin_type, String notes, double gl_value,
+                               double insulin, String before_eating) {
         this.time = time;
         this.insulin_type = insulin_type;
         this.notes = notes;
@@ -22,7 +22,7 @@ public class Value implements Parcelable, Comparable<Value> {
         this.before_eating = before_eating;
     }
 
-    protected Value(Parcel in) {
+    protected GlucoseValueDetails(Parcel in) {
         time = in.readString();
         insulin_type = in.readString();
         notes = in.readString();
@@ -46,15 +46,15 @@ public class Value implements Parcelable, Comparable<Value> {
         return 0;
     }
 
-    public static final Creator<Value> CREATOR = new Creator<Value>() {
+    public static final Creator<GlucoseValueDetails> CREATOR = new Creator<GlucoseValueDetails>() {
         @Override
-        public Value createFromParcel(Parcel in) {
-            return new Value(in);
+        public GlucoseValueDetails createFromParcel(Parcel in) {
+            return new GlucoseValueDetails(in);
         }
 
         @Override
-        public Value[] newArray(int size) {
-            return new Value[size];
+        public GlucoseValueDetails[] newArray(int size) {
+            return new GlucoseValueDetails[size];
         }
     };
 
@@ -107,7 +107,7 @@ public class Value implements Parcelable, Comparable<Value> {
     }
 
     @Override
-    public int compareTo(Value value) {
-        return time.compareTo(value.getTime());
+    public int compareTo(GlucoseValueDetails glucoseValueDetails) {
+        return time.compareTo(glucoseValueDetails.getTime());
     }
 }
