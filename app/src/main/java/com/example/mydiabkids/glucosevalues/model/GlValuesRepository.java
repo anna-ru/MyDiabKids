@@ -1,10 +1,12 @@
-package com.example.mydiabkids.glucosevalues.db;
+package com.example.mydiabkids.glucosevalues.model;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.mydiabkids.glucosevalues.model.GlucoseValueEntity;
+import com.example.mydiabkids.glucosevalues.db.GlValuesDao;
+import com.example.mydiabkids.glucosevalues.db.GlValuesDatabase;
+import com.example.mydiabkids.glucosevalues.db.GlucoseValueEntity;
 
 import java.util.List;
 

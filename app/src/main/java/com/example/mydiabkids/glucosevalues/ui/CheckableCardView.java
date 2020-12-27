@@ -1,4 +1,4 @@
-package com.example.mydiabkids.glucosevalues.model;
+package com.example.mydiabkids.glucosevalues.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;

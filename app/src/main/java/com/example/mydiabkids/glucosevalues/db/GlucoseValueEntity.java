@@ -1,10 +1,13 @@
-package com.example.mydiabkids.glucosevalues.model;
+package com.example.mydiabkids.glucosevalues.db;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
+
+import com.example.mydiabkids.glucosevalues.model.Converter;
+import com.example.mydiabkids.glucosevalues.model.Value;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ import android.widget.Checkable;
 import android.widget.TextView;
 
 import com.example.mydiabkids.R;
-import com.example.mydiabkids.glucosevalues.model.CheckableCardView;
 import com.example.mydiabkids.glucosevalues.model.Value;
 import com.thoughtbot.expandablecheckrecyclerview.viewholders.CheckableChildViewHolder;
 

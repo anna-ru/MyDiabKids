@@ -1,4 +1,4 @@
-package com.example.mydiabkids.glucosevalues.ui;
+package com.example.mydiabkids.glucosevalues.model;
 
 import android.app.Application;
 
@@ -6,8 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.mydiabkids.glucosevalues.db.GlValuesRepository;
-import com.example.mydiabkids.glucosevalues.model.GlucoseValueEntity;
+import com.example.mydiabkids.glucosevalues.db.GlucoseValueEntity;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class GlValuesViewModel extends AndroidViewModel {
         mAllValues = mRepository.getAllValuesWithDate();
     }
 
-    LiveData<List<GlucoseValueEntity>> getAllValues() {
+    public LiveData<List<GlucoseValueEntity>> getAllValues() {
         return  mAllValues;
     }
 
