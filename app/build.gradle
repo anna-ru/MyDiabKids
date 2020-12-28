@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\ruszn\\Documents\\egyetem\\SZAKDOGA\\release-keystore.jks')
+            storePassword 'keystore'
+            keyAlias 'key0'
+            keyPassword 'keypass'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -29,6 +37,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
