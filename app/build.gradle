@@ -1,19 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: "androidx.navigation.safeargs"
 
-/*def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))*/
-
 android {
-    /*signingConfigs {
+    signingConfigs {
         release {
-            storeFile file(keystoreProperties['releaseKeyStore'])
-            storePassword keystoreProperties['releaseStorePassword']
-            keyAlias keystoreProperties['releaseKeyAlias']
-            keyPassword keystoreProperties['releaseKeyPassword']
+            def keystorePropertiesFile = rootProject.file("keystore.properties")
+            if(keystorePropertiesFile.exists()){
+                def keystoreProperties = new Properties()
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                storeFile file(keystoreProperties['releaseKeyStore'])
+                storePassword keystoreProperties['releaseStorePassword']
+                keyAlias keystoreProperties['releaseKeyAlias']
+                keyPassword keystoreProperties['releaseKeyPassword']
+            }
         }
-    }*/
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -41,7 +42,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
     }
 
