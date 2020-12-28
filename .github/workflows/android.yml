@@ -62,12 +62,28 @@ jobs:
         java-version: 11
     - name: Make gradlew executable
       run: chmod +x ./gradlew
-    - name: Generate APK
-      run: ./gradlew assembleRelease --stacktrace
-      working-directory: ./
-      
-    - name: Upload APK to artifacts
-      uses: actions/upload-artifact@v1
+    - uses: r0adkll/sign-android-release@v1
+      name: Sign app APK
+    # ID used to access action output
+      id: sign_app
       with:
-        name: app
-        path: app/build/outputs/apk/release/app-release.apk
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
+    # Example use of `signedReleaseFile` output -- not needed
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Upload APK
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+   # - name: Generate APK
+    #  run: ./gradlew assembleRelease --stacktrace
+     # working-directory: ./
+      
+   # - name: Upload APK to artifacts
+    #  uses: actions/upload-artifact@v1
+     # with:
+      #  name: app
+       # path: app/build/outputs/apk/release/app-release.apk
