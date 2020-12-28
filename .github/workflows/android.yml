@@ -62,6 +62,11 @@ jobs:
         java-version: 11
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+      
+    - name: Generate APK
+      run: ./gradlew assembleRelease --stacktrace
+      working-directory: ./
+      
     - uses: r0adkll/sign-android-release@v1
       name: Sign app APK
     # ID used to access action output
@@ -78,9 +83,6 @@ jobs:
       with:
         name: Upload APK
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
-   # - name: Generate APK
-    #  run: ./gradlew assembleRelease --stacktrace
-     # working-directory: ./
       
    # - name: Upload APK to artifacts
     #  uses: actions/upload-artifact@v1
