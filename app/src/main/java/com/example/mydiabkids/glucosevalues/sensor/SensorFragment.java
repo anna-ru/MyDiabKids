@@ -1,9 +1,7 @@
 package com.example.mydiabkids.glucosevalues.sensor;
 
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -26,23 +24,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.mydiabkids.R;
 
-import java.text.BreakIterator;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.mydiabkids.MainActivity.CHANNEL_ID;
 import static com.example.mydiabkids.glucosevalues.sensor.SensorService.IP;
-import static com.example.mydiabkids.settings.NotificationsFragment.highPrefStr;
-import static com.example.mydiabkids.settings.NotificationsFragment.lowPrefStr;
+import static com.example.mydiabkids.glucosevalues.sensor.SensorService.isInitialized;
 import static com.example.mydiabkids.settings.ThemeFragment.BLUE;
 import static com.example.mydiabkids.settings.ThemeFragment.BROWN;
 import static com.example.mydiabkids.settings.ThemeFragment.GREEN;
@@ -53,70 +49,60 @@ import static com.example.mydiabkids.glucosevalues.sensor.SensorService.isSensor
 
 public class SensorFragment extends Fragment {
 
-    ImageButton startBtn, stopBtn, calibrationBtn;
+   // private static final String SERVICE_BINDER_KEY = "SensorServiceBinder";
+    ImageButton startBtn, calibrationBtn;
     Button valuesBtn, statisticsBtn;
     TextView currentValue;
     Context context;
     MyHandlerThread myHandlerThread;
     private Handler mainHandler;
+    private final SensorInitialization init = SensorInitialization.getInstance();
+    SensorService.SensorBinder binder;
+    //private Bundle savedState = null;
 
-    //private double currValue;
     private String currentDisplayedValue;
 
-    private Timer timer = new Timer();
-    private TimerTask timerTask;
+    //private Timer timer = new Timer();
+    private Runnable task;
 
     private SensorService mService;
     private boolean isBound = false;
     Intent serviceIntent;
 
+    //SensorViewModel sensorViewModel;
+
     public SensorFragment() {}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //sensorViewModel = new ViewModelProvider(this).get(SensorViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e("SensorFragment", "oncreateview");
         View view = inflater.inflate(R.layout.fragment_sensor, container, false);
+
         context = getContext();
         startBtn = view.findViewById(R.id.start_sensor_btn);
-        //stopBtn = view.findViewById(R.id.stop_sensor_btn);
         calibrationBtn = view.findViewById(R.id.calibration_btn);
         setButtonColors();
 
         valuesBtn = view.findViewById(R.id.sensor_values_btn);
         statisticsBtn = view.findViewById(R.id.statistics_btn);
         currentValue = view.findViewById(R.id.current_value);
-        myHandlerThread = new MyHandlerThread("Current sensor value UI update");
 
-        myHandlerThread.start();
-        myHandlerThread.prepareHandler();
+        //observeCurrentValue();
         currentDisplayedValue = "Indítsd el a szenzort";
 
         currentValue.setText(currentDisplayedValue);
         serviceIntent = new Intent(context, SensorService.class);
 
-        if(isSensorRunning.get()){
-            startBtn.setEnabled(false);
-            getActivity().startService(serviceIntent);
-            getActivity().bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
-            if(isBound) {
-                currentDisplayedValue = mService.getCurrentDisplayedValue();
-                currentValue.setText(currentDisplayedValue);
-                Log.e("SensorFragment", "sensor is running without start button");
-            }
-
-        }
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        //stopBtn.setEnabled(false);
         mainHandler = new Handler();
 
-        timerTask = new TimerTask() {
+        task = new Runnable() {
             @Override
             public void run() {
                 if(isSensorRunning.get()){
@@ -128,6 +114,7 @@ public class SensorFragment extends Fragment {
                             currentValue.setText(currentDisplayedValue);
                             Log.e("SensorFragment", "Display: " + currentDisplayedValue);
                         }
+                       //observeCurrentValue();
                     });
                 } else {
                     mainHandler.post(() -> {
@@ -135,31 +122,16 @@ public class SensorFragment extends Fragment {
                        currentValue.setText("Hiba. Próbáld újra később.");
                     });
                 }
-
+                myHandlerThread.postDelayed(this, 10000);
             }
         };
 
         startBtn.setOnClickListener(view1 -> {
             getActivity().startService(serviceIntent);
             getActivity().bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
-
+            //startSensor();
         });
 
-        /*
-        stopBtn.setOnClickListener(view12 -> {
-            isSensorRunning.set(false);
-            mService.stopSensor();
-            getActivity().stopService(serviceIntent);
-            getActivity().unbindService(connection);
-            isBound = false;
-
-            startBtn.setEnabled(true);
-            stopBtn.setEnabled(false);
-            currentValue.setText("Indítsd el a szenzort");
-            timer.cancel();
-            Toast.makeText(context, "Szenzor stop", Toast.LENGTH_SHORT).show();
-        });
-*/
         valuesBtn.setOnClickListener(view13 -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(IP + ":3000/d/Yp5ITa1Gz/mydiabkids"));
             startActivity(browserIntent);
@@ -181,13 +153,25 @@ public class SensorFragment extends Fragment {
                         .show();
             }
         });
-    }
 
+        return view;
+    }
+/*
+    public void observeCurrentValue(){
+        sensorViewModel.getSensorDisplayStatus().observe(getViewLifecycleOwner(), new Observer<SensorDisplayStatus>() {
+            @Override
+            public void onChanged(SensorDisplayStatus sensorDisplayStatus) {
+                startBtn.setEnabled(sensorDisplayStatus.btnStatus);
+                currentValue.setText(sensorDisplayStatus.currValue);
+            }
+        });
+    }
+*/
     private ServiceConnection connection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-            SensorService.SensorBinder binder = (SensorService.SensorBinder) service;
+            binder = (SensorService.SensorBinder) service;
             mService = binder.getService();
             isBound = true;
 
@@ -205,21 +189,29 @@ public class SensorFragment extends Fragment {
 
     private void startSensor(){
         startBtn.setEnabled(false);
-        //stopBtn.setEnabled(true);
         if(!isSensorRunning.get()){
             mService.startSensor();
-            Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
-
-            while(!mService.getIsInitialized()){
-                //Wait for initialization
-            }
+            init.waitForInit();
         }
-        if(mService.getIsInitialized() && mService.getInitValue() < 1){
-            //Calibration needed
-            needCalibration();
-            timer.schedule(timerTask, 500, 10000);
-        } else if (mService.getIsInitialized() && mService.getInitValue() >= 1){
-            timer.schedule(timerTask, 500, 10000);
+        //sensorViewModel.startSensor();
+        if(!isSensorRunning.get() && isInitialized.get()) {
+            Toast.makeText(context, "Hiba történt a szenzor csatlakoztatása közben", Toast.LENGTH_SHORT).show();
+            currentValue.setText("Hiba. Próbáld újra később.");
+        } else {
+            myHandlerThread = new MyHandlerThread("Current sensor value UI update");
+            myHandlerThread.start();
+            myHandlerThread.prepareHandler();
+            //if(sensorViewModel.getInitializedStatus() && sensorViewModel.getInitValue() < 1){
+            if (isInitialized.get() && mService.getInitValue() < 1) {
+                //Calibration needed
+                needCalibration();
+                myHandlerThread.postTask(task);
+            }
+            //else if(sensorViewModel.getInitializedStatus() && sensorViewModel.getInitValue() >= 1){
+            else if (isInitialized.get() && mService.getInitValue() >= 1) {
+                myHandlerThread.postTask(task);
+            }
+            Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -234,6 +226,7 @@ public class SensorFragment extends Fragment {
                 .setPositiveButton(R.string.kesz, (dialog, id) -> {
                     String result = editText.getText().toString();
                     mService.setCurrentValue(Double.parseDouble(result));
+                    //sensorViewModel.setCurrentValue(Double.parseDouble(result));
                     Toast.makeText(context, "Sikeres kalibrálás", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton(R.string.megsem, (dialog, id) -> {
@@ -268,7 +261,11 @@ public class SensorFragment extends Fragment {
                 .setTitle("Kalibrálás szükséges")
                 .setPositiveButton(R.string.kesz, (dialog, id) -> {
                     String result = editText.getText().toString();
-                    mService.calibrate(Double.parseDouble(result));
+                    Double r = Double.parseDouble(result);
+                    init.setInitValue(r);
+                    //sensorViewModel.setInitValue(r);
+                    mService.calibrate(r);
+                    //sensorViewModel.calibrate(r);
                 })
                 .setCancelable(false);
 
@@ -292,15 +289,13 @@ public class SensorFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        //myHandlerThread.quit();
-        //isSensorRunning.set(false);
-        if(isBound){
-            getActivity().unbindService(connection);
-            getActivity().stopService(serviceIntent);
-            isBound = false;
+        //if(isBound){
+          //  getActivity().unbindService(connection);
+          //  getActivity().stopService(serviceIntent);
+          //  isBound = false;
+            if(myHandlerThread != null) myHandlerThread.quit();
             Log.e("SensorFragment", "onDestroy");
-        }
-        //timer.cancel();
+        //}
         super.onDestroy();
     }
 
@@ -329,5 +324,4 @@ public class SensorFragment extends Fragment {
         }
     }
 
-    //TODO: ha újra indul az activity, akkor nem jelenik meg a szenzor érték
 }

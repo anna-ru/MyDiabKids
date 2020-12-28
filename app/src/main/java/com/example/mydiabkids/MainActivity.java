@@ -11,8 +11,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +23,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -47,15 +50,23 @@ public class MainActivity extends AppCompatActivity {
     public static final String CHANNEL_ID = "First channel";
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder builder;
+    private SensorFragment sensorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            sensorFragment = (SensorFragment) getSupportFragmentManager().getFragment(savedInstanceState, "SensorFragment");
+        }
+*/
         drawerLayout = findViewById(R.id.drawer_layout);
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        //navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = navHostFragment.getNavController();
         navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration =
                 new AppBarConfiguration.Builder(navController.getGraph()).setOpenableLayout(drawerLayout).build();
@@ -87,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
         isBound = false;
         super.onDestroy();
     }
+
+  /*  @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+
+        getSupportFragmentManager().putFragment(outState, "SensorFragment", sensorFragment);
+    }*/
 
     private ServiceConnection connection = new ServiceConnection() {
 

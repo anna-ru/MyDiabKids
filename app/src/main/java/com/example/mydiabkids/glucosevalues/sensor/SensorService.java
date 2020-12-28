@@ -40,7 +40,7 @@ public class SensorService extends Service {
 
     private final IBinder binder = new SensorBinder();
     public static AtomicBoolean isSensorRunning = new AtomicBoolean();
-    private AtomicBoolean isInitialized = new AtomicBoolean();
+    public static final AtomicBoolean isInitialized = new AtomicBoolean();
     private InfluxDBClient client;
 
     private int currHour;
@@ -49,8 +49,9 @@ public class SensorService extends Service {
     private String currentDisplayedValue;
     private final ZoneId id = ZoneId.of("Europe/Budapest");
     private final DecimalFormat df = new DecimalFormat("#.#");
-    private MyHandlerThread myHandlerThread = new MyHandlerThread("SensorService");
+    private final MyHandlerThread myHandlerThread = new MyHandlerThread("SensorService");
     Context context;
+    private final SensorInitialization initialization = SensorInitialization.getInstance();
 
     @Nullable
     @Override
@@ -63,6 +64,10 @@ public class SensorService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("Service", "Service started");
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    public boolean getIsRunning() {
+        return isSensorRunning.get();
     }
 
     public class SensorBinder extends Binder{
@@ -164,25 +169,23 @@ public class SensorService extends Service {
                         List<FluxRecord> records = fluxTable.getRecords();
                         for (FluxRecord fluxRecord : records) {
                             initValue = (double) fluxRecord.getValueByKey("_value");
-                            Log.e("Service", "initial value: " + initValue);
                         }
                     }
                     if(initValue >= 1) {
                         currValue = initValue;
                         setCurrentDisplayedValue(initValue);
                     }
-                    isInitialized.set(true);
+                    initialization.setInitValue(initValue);
+                    Log.e("Service", "initial value: " + initValue);
                 }catch (Exception e){
                     Log.e("SensorService", e.getMessage());
                     isSensorRunning.set(false);
-                    isInitialized.set(true);
+                    initialization.failedInitialization();
                 }
+                isInitialized.set(true);
             }
 
-            while(initValue < 1){
-                //Waiting for calibration
-            }
-            //if(isInitialized.get() && initValue >= 1) calibrate(initValue);
+            initialization.waitForCalibration();
 
             if(isSensorRunning.get()) {
                 //Get current hour
