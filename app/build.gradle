@@ -4,7 +4,7 @@ apply plugin: "androidx.navigation.safeargs"
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\ruszn\\Documents\\egyetem\\SZAKDOGA\\release-keystore.jks')
+            storeFile file('C:/Users/ruszn/Documents/egyetem/SZAKDOGA/release-keystore.jks')
             storePassword 'keystore'
             keyAlias 'key0'
             keyPassword 'keypass'
