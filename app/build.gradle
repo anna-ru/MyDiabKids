@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: "androidx.navigation.safeargs"
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     signingConfigs {
         release {
-            storeFile file('../release-keystore.jks')
-            storePassword 'keystore'
-            keyAlias 'key0'
-            keyPassword 'keypass'
+            storeFile file(keystoreProperties['releaseKeyStore'])
+            storePassword keystoreProperties['releaseStorePassword']
+            keyAlias keystoreProperties['releaseKeyAlias']
+            keyPassword keystoreProperties['releaseKeyPassword']
         }
     }
     compileSdkVersion 29
