@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mydiabkids.R;
 import com.influxdb.client.InfluxDBClient;
@@ -179,6 +180,10 @@ public class StatisticsFragment extends Fragment {
                 }
             }catch (Exception e){
                 Log.e("Statistics", e.getMessage());
+                mainHandler.post(() -> {
+                    Toast.makeText(getContext(), "Hiba. Ellenőrizd az internetkapcsolatot és próbáld újra.", Toast.LENGTH_LONG)
+                    .show();
+                });
             }
             mainHandler.post(() -> {
                 dAvg.setText(df.format(dAvg_));

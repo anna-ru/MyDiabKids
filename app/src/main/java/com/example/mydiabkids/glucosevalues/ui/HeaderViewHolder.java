@@ -7,11 +7,11 @@ import com.example.mydiabkids.R;
 import com.example.mydiabkids.glucosevalues.model.GlucoseValueHeader;
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 
-class GlValuesViewHolder extends GroupViewHolder {
+class HeaderViewHolder extends GroupViewHolder {
 
     private final TextView date;
 
-    public GlValuesViewHolder(View itemView) {
+    public HeaderViewHolder(View itemView) {
         super(itemView);
         date = itemView.findViewById(R.id.date_edit);
     }

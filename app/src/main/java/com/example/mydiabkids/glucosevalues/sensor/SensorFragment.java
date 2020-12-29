@@ -126,6 +126,13 @@ public class SensorFragment extends Fragment {
             }
         };
 
+        if(isSensorRunning.get()){
+            if(mService == null){
+                getActivity().startService(serviceIntent);
+                getActivity().bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
+            } else startSensor();
+        }
+
         startBtn.setOnClickListener(view1 -> {
             getActivity().startService(serviceIntent);
             getActivity().bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE);
@@ -188,10 +195,12 @@ public class SensorFragment extends Fragment {
     };
 
     private void startSensor(){
+        boolean firstStart = false;
         startBtn.setEnabled(false);
         if(!isSensorRunning.get()){
             mService.startSensor();
             init.waitForInit();
+            firstStart = true;
         }
         //sensorViewModel.startSensor();
         if(!isSensorRunning.get() && isInitialized.get()) {
@@ -211,7 +220,7 @@ public class SensorFragment extends Fragment {
             else if (isInitialized.get() && mService.getInitValue() >= 1) {
                 myHandlerThread.postTask(task);
             }
-            Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
+            if(firstStart) Toast.makeText(context, "Szenzor start", Toast.LENGTH_SHORT).show();
         }
     }
 

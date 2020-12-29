@@ -46,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navView;
     private SensorService mService;
     private boolean isBound = false;
-    Intent serviceIntent;
+    private Intent serviceIntent;
     public static final String CHANNEL_ID = "First channel";
-    NotificationManagerCompat notificationManager;
-    NotificationCompat.Builder builder;
-    private SensorFragment sensorFragment;
+    private NotificationManagerCompat notificationManager;
+    private NotificationCompat.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

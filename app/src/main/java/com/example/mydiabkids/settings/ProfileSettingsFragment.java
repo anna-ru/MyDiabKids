@@ -58,7 +58,6 @@ public class ProfileSettingsFragment extends Fragment {
     Button save, cancel;
 
     Context context;
-    HashMap<String, String> profileData;
 
     public ProfileSettingsFragment() {
         // Required empty public constructor
@@ -114,32 +113,32 @@ public class ProfileSettingsFragment extends Fragment {
 
         cancel.setOnClickListener(view13 -> getActivity().onBackPressed());
 
-                save.setOnClickListener(view14 -> {
-                    String name, birthDate, diabType, bolus, basis, helpers, pName, pEmail, pTel, dName, dEmail, dTel;
-                    name = nameEdit.getText().toString();
-                    birthDate = birthTV.getText().toString();
-                    diabType = diabTypeSpinner.getSelectedItem().toString();
-                    bolus = bolusEdit.getText().toString();
-                    basis = basisEdit.getText().toString();
-                    helpers = helpersEdit.getText().toString();
-                    pName = pNameEdit.getText().toString();
-                    pEmail = pEmailEdit.getText().toString();
-                    pTel = pTelEdit.getText().toString();
-                    dName = dNameEdit.getText().toString();
-                    dEmail = dEmailEdit.getText().toString();
-                    dTel = dTelEdit.getText().toString();
+        save.setOnClickListener(view14 -> {
+            String name, birthDate, diabType, bolus, basis, helpers, pName, pEmail, pTel, dName, dEmail, dTel;
+            name = nameEdit.getText().toString();
+            birthDate = birthTV.getText().toString();
+            diabType = diabTypeSpinner.getSelectedItem().toString();
+            bolus = bolusEdit.getText().toString();
+            basis = basisEdit.getText().toString();
+            helpers = helpersEdit.getText().toString();
+            pName = pNameEdit.getText().toString();
+            pEmail = pEmailEdit.getText().toString();
+            pTel = pTelEdit.getText().toString();
+            dName = dNameEdit.getText().toString();
+            dEmail = dEmailEdit.getText().toString();
+            dTel = dTelEdit.getText().toString();
 
-                    try {
-                        JSONObject jsonObject = createJson(name, birthDate, diabType, bolus, basis, helpers, pName, pEmail,
-                                pTel, dName, dEmail, dTel);
-                        writeToJsonFile(jsonObject);
-                        Toast.makeText(context, "Beállítások mentve", Toast.LENGTH_SHORT).show();
-                    } catch (JSONException | IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(context, "Valami hiba történt", Toast.LENGTH_SHORT).show();
-                    }
-                    getActivity().onBackPressed();
-                });
+            try {
+                JSONObject jsonObject = createJson(name, birthDate, diabType, bolus, basis, helpers, pName, pEmail,
+                        pTel, dName, dEmail, dTel);
+                writeToJsonFile(jsonObject);
+                Toast.makeText(context, "Beállítások mentve", Toast.LENGTH_SHORT).show();
+            } catch (JSONException | IOException e) {
+                e.printStackTrace();
+                Toast.makeText(context, "Valami hiba történt", Toast.LENGTH_SHORT).show();
+            }
+            getActivity().onBackPressed();
+        });
 
         return view;
     }
@@ -150,7 +149,7 @@ public class ProfileSettingsFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
 
         if(!name.isEmpty()) jsonObject.put(NAME, name);
-        else jsonObject.put(NAME, " ");
+        else jsonObject.put(NAME, "Név");
         if(!birthDate.isEmpty()) jsonObject.put(BIRTH_DATE, birthDate);
         else jsonObject.put(BIRTH_DATE, " ");
         if(!diabType.isEmpty()) jsonObject.put(DIAB_TYPE, diabType);

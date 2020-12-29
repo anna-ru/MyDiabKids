@@ -6,7 +6,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.mydiabkids.glucosevalues.model.Converter;
 import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
 
 import java.util.List;

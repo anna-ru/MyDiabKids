@@ -1,7 +1,8 @@
-package com.example.mydiabkids.glucosevalues.model;
+package com.example.mydiabkids.glucosevalues.db;
 
 import androidx.room.TypeConverter;
 
+import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;

@@ -46,8 +46,6 @@ import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.MODIFY_
 
 public class GlucoseValuesFragment extends Fragment {
 
-    //TODO: sending
-
     private GlValuesViewModel glValuesViewModel;
     public static final int NEW_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE = 0;
     public static final int MODIFY_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE = 1;

@@ -8,11 +8,11 @@ import com.example.mydiabkids.R;
 import com.example.mydiabkids.glucosevalues.model.GlucoseValueDetails;
 import com.thoughtbot.expandablecheckrecyclerview.viewholders.CheckableChildViewHolder;
 
-class ValueViewHolder extends CheckableChildViewHolder {
+class DetailsViewHolder extends CheckableChildViewHolder {
     private final TextView time, insulin, value, eating, type, notes;
     private final CheckableCardView checkableCardView;
 
-    public ValueViewHolder(View itemView) {
+    public DetailsViewHolder(View itemView) {
         super(itemView);
 
         time = itemView.findViewById(R.id.time_edit);
