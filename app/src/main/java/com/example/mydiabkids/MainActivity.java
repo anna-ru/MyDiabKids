@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         if(isSensorRunning.get()){
             notificationManager.notify(3, builder.build());
-            mService.stopSensor();
         }
         stopService(serviceIntent);
         unbindService(connection);
