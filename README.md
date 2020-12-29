@@ -1,3 +1,3 @@
 # MyDiabKids
 
-Szakdolgozatom keretében egy vércukor naplózó alkalmazást készítettem gyerekek számára. Az apk fájl elérhető [itt](https://github.com/anna-ru/MyDiabKids/suites/1735214451/artifacts/32887982). Ezt letöltve és feltelepítve kipróbálható az alkalmazás.
+Szakdolgozatom keretében egy vércukor naplózó alkalmazást készítettem gyerekek számára. Az apk fájl elérhető az Actions fülön az artifactok között az app.zip fájlban. Ezt letöltve és feltelepítve kipróbálható az alkalmazás.
