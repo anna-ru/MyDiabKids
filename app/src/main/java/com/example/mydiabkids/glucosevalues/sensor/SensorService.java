@@ -86,7 +86,6 @@ public class SensorService extends Service {
 
     public void stopSensor(){
         isSensorRunning.set(false);
-        client.close();
         myHandlerThread.removeCallback(sensor);
         myHandlerThread.quit();
     }

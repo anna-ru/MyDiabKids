@@ -91,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        notificationManager.notify(3, builder.build());
+        if(isSensorRunning.get()){
+            notificationManager.notify(3, builder.build());
+            mService.stopSensor();
+        }
         stopService(serviceIntent);
         unbindService(connection);
         isBound = false;
