@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -22,6 +23,7 @@ import com.influxdb.client.domain.WritePrecision;
 import com.influxdb.client.write.Point;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
+import com.example.mydiabkids.BuildConfig;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
@@ -129,9 +131,9 @@ public class SensorService extends Service {
     }
 
     private final Runnable sensor = new Runnable() {
-         final char[] token = "3NJ0Z0T1NSsJVx3CYNBXFSki7hKZqiSguAa63oHmUNEHvOGd6urEIV99mTptcMnWHXAdku4ZNFfajiUwUDxMPg==".toCharArray();
-         final String bucket = "GlucoseValues";
-         final String org = "MyDiabKids";
+         final char[] token = BuildConfig.token.toCharArray();
+         final String bucket = BuildConfig.bucket;
+         final String org = BuildConfig.org;
          final String MEASUREMENT = "glucoseValue";
          final String VALUE = "value";
          final String TAG = "tag";
@@ -152,7 +154,7 @@ public class SensorService extends Service {
             high = Double.parseDouble(highValue);
 
             isSensorRunning.set(true);
-            client = InfluxDBClientFactory.create(IP + ":8086", token, org, bucket);
+            client = InfluxDBClientFactory.create(BuildConfig.influxdb_ip, token, org, bucket);
             try{
                 writeApi = client.getWriteApi();
             } catch (Exception e){
@@ -160,7 +162,7 @@ public class SensorService extends Service {
             }
 
             if(initValue < 1){
-                String query = "from(bucket: \"GlucoseValues\") |> range(start: -10m) |> last()";
+                String query = "from(bucket: " + "\"" + bucket + "\") |> range(start: -10m) |> last()";
                 try{
                     QueryApi queryApi = client.getQueryApi();
                     List<FluxTable> tables = queryApi.query(query);

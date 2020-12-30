@@ -37,6 +37,11 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "influxdb_ip", "\"" + getInfluxDBIP() + "\"")
+        buildConfigField("String", "grafana_ip", "\"" + getGrafanaIP() + "\"")
+        buildConfigField("String", "token", "\"" + getToken() + "\"")
+        buildConfigField("String", "bucket", "\"" + getBucket() + "\"")
+        buildConfigField("String", "org", "\"" + getOrg() + "\"")
     }
 
     buildTypes {
@@ -105,6 +110,74 @@ dependencies {
     implementation "com.influxdb:influxdb-client-java:1.14.0"
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     implementation 'org.conscrypt:conscrypt-android:2.2.1'
+}
 
+def getInfluxDBIP() {
+    def influxdb_ip = System.getenv("influxdb_ip")
+    if (influxdb_ip == null || influxdb_ip.length() == 0) {
+        def apikeyPropertiesFile = rootProject.file("apikey.properties")
+        def apikeyProperties = new Properties()
+        apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+        influxdb_ip = apikeyProperties['influxdb_ip']
+        if (influxdb_ip == null) {
+            logger.error("You need to either place appropriate keys.properties or set proper environment variables for API key")
+        }
+    }
+    return influxdb_ip
+}
 
+def getGrafanaIP() {
+    def grafana_ip = System.getenv("grafana_ip")
+    if (grafana_ip == null || grafana_ip.length() == 0) {
+        def apikeyPropertiesFile = rootProject.file("apikey.properties")
+        def apikeyProperties = new Properties()
+        apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+        grafana_ip = apikeyProperties['grafana_ip']
+        if (grafana_ip == null) {
+            logger.error("You need to either place appropriate keys.properties or set proper environment variables for API key")
+        }
+    }
+    return grafana_ip
+}
+
+def getToken() {
+    def token = System.getenv("token")
+    if (token == null || token.length() == 0) {
+        def apikeyPropertiesFile = rootProject.file("apikey.properties")
+        def apikeyProperties = new Properties()
+        apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+        token = apikeyProperties['token']
+        if (token == null) {
+            logger.error("You need to either place appropriate keys.properties or set proper environment variables for API key")
+        }
+    }
+    return token
+}
+
+def getBucket() {
+    def bucket = System.getenv("bucket")
+    if (bucket == null || bucket.length() == 0) {
+        def apikeyPropertiesFile = rootProject.file("apikey.properties")
+        def apikeyProperties = new Properties()
+        apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+        bucket = apikeyProperties['bucket']
+        if (bucket == null) {
+            logger.error("You need to either place appropriate keys.properties or set proper environment variables for API key")
+        }
+    }
+    return bucket
+}
+
+def getOrg() {
+    def org = System.getenv("org")
+    if (org == null || org.length() == 0) {
+        def apikeyPropertiesFile = rootProject.file("apikey.properties")
+        def apikeyProperties = new Properties()
+        apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+        org = apikeyProperties['org']
+        if (org == null) {
+            logger.error("You need to either place appropriate keys.properties or set proper environment variables for API key")
+        }
+    }
+    return org
 }

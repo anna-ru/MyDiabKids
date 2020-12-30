@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mydiabkids.BuildConfig;
 import com.example.mydiabkids.R;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.InfluxDBClientFactory;
@@ -78,10 +79,10 @@ public class StatisticsFragment extends Fragment {
 
         @Override
         public void run() {
-            char[] token = "3NJ0Z0T1NSsJVx3CYNBXFSki7hKZqiSguAa63oHmUNEHvOGd6urEIV99mTptcMnWHXAdku4ZNFfajiUwUDxMPg==".toCharArray();
-            String bucket = "GlucoseValues";
-            String org = "MyDiabKids";
-            InfluxDBClient client = InfluxDBClientFactory.create(IP + ":8086", token, org, bucket);
+            char[] token = BuildConfig.token.toCharArray();
+            String bucket = BuildConfig.bucket;
+            String org = BuildConfig.org;
+            InfluxDBClient client = InfluxDBClientFactory.create(BuildConfig.influxdb_ip, token, org, bucket);
 
             Instant stopTime = Instant.now();
             Instant startTimeDay, startTimeWeek, startTimeMonth;
@@ -98,18 +99,18 @@ public class StatisticsFragment extends Fragment {
             minusMonthTime = minusDayTime + (dayOfMonth-1)*24;
             startTimeMonth = stopTime.minus(minusMonthTime, ChronoUnit.HOURS);
 
-            String queryDAvg = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeDay + ", stop: " + stopTime
+            String queryDAvg = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeDay + ", stop: " + stopTime
                     + ") |> movingAverage(n: 288)";
-            String queryDMax = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeDay + ", stop: " + stopTime + ") |> max()";
-            String queryDMin = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeDay + ", stop: " + stopTime + ") |> min()";
-            String queryWAvg = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeWeek + ", stop: "
+            String queryDMax = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeDay + ", stop: " + stopTime + ") |> max()";
+            String queryDMin = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeDay + ", stop: " + stopTime + ") |> min()";
+            String queryWAvg = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeWeek + ", stop: "
                     + stopTime +") |> movingAverage(n: 2016)";
-            String queryWMax = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeWeek + ", stop: " + stopTime +") |> max()";
-            String queryWMin = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeWeek + ", stop: "  + stopTime +") |> min()";
-            String queryMAvg = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeMonth + ", stop: " + stopTime +
+            String queryWMax = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeWeek + ", stop: " + stopTime +") |> max()";
+            String queryWMin = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeWeek + ", stop: "  + stopTime +") |> min()";
+            String queryMAvg = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeMonth + ", stop: " + stopTime +
             ") |> movingAverage(n: 8640)";
-            String queryMMax = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeMonth + ", stop: " + stopTime + ") |> max()";
-            String queryMMin = "from(bucket: \"GlucoseValues\") |> range(start: " + startTimeMonth + ", stop: " + stopTime + ") |> min()";
+            String queryMMax = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeMonth + ", stop: " + stopTime + ") |> max()";
+            String queryMMin = "from(bucket: \"" + bucket + "\") |> range(start: " + startTimeMonth + ", stop: " + stopTime + ") |> min()";
             try{
                 QueryApi queryApi = client.getQueryApi();
                 //Daily average, max, min

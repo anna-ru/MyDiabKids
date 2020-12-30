@@ -30,6 +30,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.mydiabkids.BuildConfig;
 import com.example.mydiabkids.R;
 
 import java.util.Timer;
@@ -140,7 +141,7 @@ public class SensorFragment extends Fragment {
         });
 
         valuesBtn.setOnClickListener(view13 -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(IP + ":3000/d/Yp5ITa1Gz/mydiabkids"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.grafana_ip));
             startActivity(browserIntent);
         });
 
