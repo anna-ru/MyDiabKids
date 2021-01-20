@@ -31,11 +31,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.thoughtbot.expandablecheckrecyclerview.listeners.OnCheckChildClickListener;
 import com.thoughtbot.expandablecheckrecyclerview.models.CheckedExpandableGroup;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.CHILD_INDEX;
 import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.MODIFY_DATE;
 import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.MODIFY_EATING;
 import static com.example.mydiabkids.glucosevalues.ModifyGlValueActivity.MODIFY_INSULIN;
@@ -73,10 +76,12 @@ public class GlucoseValuesFragment extends Fragment {
             public void onChanged(List<GlucoseValueEntity> glucoseValueEntities) {
                 glucoseValueHeaders.clear();
                 for (GlucoseValueEntity value: glucoseValueEntities) {
-                    Collections.sort(value.getGlucoseValues(), Collections.reverseOrder());
+                    //value.getGlucoseValues().sort(Collections.reverseOrder());
+                    value.getGlucoseValues().sort(Collections.reverseOrder());
                     GlucoseValueHeader glucoseValueHeader = new GlucoseValueHeader(value.getDate(), value.getGlucoseValues());
                     glucoseValueHeaders.add(glucoseValueHeader);
                 }
+                glucoseValueHeaders.sort(Collections.reverseOrder());
                 GlucoseValueAdapter adapter = new GlucoseValueAdapter(glucoseValueHeaders);
                 adapter.setChildClickListener(new ChildClickListener(adapter));
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -86,12 +91,9 @@ public class GlucoseValuesFragment extends Fragment {
 
         //Adding new glucose value
         FloatingActionButton fab = view.findViewById(R.id.new_value_button);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NewGlValueActivity.class);
-                startActivityForResult(intent, NEW_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE);
-            }
+        fab.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), NewGlValueActivity.class);
+            startActivityForResult(intent, NEW_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE);
         });
         super.onViewCreated(view, savedInstanceState);
     }
@@ -118,7 +120,7 @@ public class GlucoseValuesFragment extends Fragment {
             if(glucoseValueHeader != null){
                 List<GlucoseValueDetails> values = glucoseValueHeader.getItems();
                 values.add(glucoseValueDetails);
-                Collections.sort(values, Collections.reverseOrder());
+                values.sort(Collections.reverseOrder());
                 insertToDate(values, date);
                 Toast.makeText(
                         getContext(),
@@ -141,10 +143,21 @@ public class GlucoseValuesFragment extends Fragment {
             eating = data.getStringExtra(MODIFY_EATING);
             gl_value = data.getDoubleExtra(MODIFY_VALUE, 0);
             insulin = data.getDoubleExtra(MODIFY_INSULIN, 0);
+            int childInd = data.getIntExtra(CHILD_INDEX, 0);
 
             GlucoseValueDetails glucoseValueDetails = new GlucoseValueDetails(time, type, notes, gl_value, insulin, eating);
-            ArrayList<GlucoseValueDetails> values = new ArrayList<>();
-            values.add(glucoseValueDetails);
+            GlucoseValueHeader glucoseValueHeader = glucoseValueWithDateAlreadyExists(date);
+            List<GlucoseValueDetails> values = null;
+            int itemCount = glucoseValueHeader.getItems().size();
+            if(itemCount == 1){
+                values = new ArrayList<>();
+                values.add(glucoseValueDetails);
+            } else if(itemCount > 1){
+                GlucoseValueDetails original = (GlucoseValueDetails) glucoseValueHeader.getItems().get(childInd);
+                values = ((List<GlucoseValueDetails>) glucoseValueHeader.getItems());
+                values.remove(original);
+                values.add(glucoseValueDetails);
+            }
 
             GlucoseValueEntity glValue = new GlucoseValueEntity(date);
             glValue.setGlucoseValues(values);
@@ -199,12 +212,7 @@ public class GlucoseValuesFragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Mit csináljunk?")
                     .setMessage("Válaszd ki, hogy mit szeretnél csinálni ezzel az értékkel!")
-                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialogInterface) {
-                            adapter.clearChoices();
-                        }
-                    })
+                    .setOnDismissListener(dialogInterface -> adapter.clearChoices())
                     .setNeutralButton("Semmit", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
@@ -224,6 +232,7 @@ public class GlucoseValuesFragment extends Fragment {
                     intent.putExtra(MODIFY_TYPE, glucoseValueDetails.getInsulin_type());
                     intent.putExtra(MODIFY_EATING, glucoseValueDetails.getBefore_eating());
                     intent.putExtra(MODIFY_NOTE, glucoseValueDetails.getNotes());
+                    intent.putExtra(CHILD_INDEX, childIndex);
                     startActivityForResult(intent, MODIFY_GLUCOSE_VALUE_ACTIVITY_REQUEST_CODE);
                 }
             }).setNegativeButton("Törlés", new DialogInterface.OnClickListener() {

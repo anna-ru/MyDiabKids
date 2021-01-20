@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.mydiabkids.R;
 
@@ -92,8 +93,16 @@ public class NewGlValueActivity extends AppCompatActivity {
     }
 
     public void showTimePicker(View view) {
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                (view1, hourOfDay, minute) -> time.setText(hourOfDay + ":" + minute), mHour, mMinute, false);
+        TimePickerDialog timePickerDialog = /*new TimePickerDialog(this,
+                (view1, hourOfDay, minute) -> time.setText(hourOfDay + ":" + minute), mHour, mMinute, false);*/
+                new TimePickerDialog(this, (timePicker, hour, minute) -> {
+                    String hourString, minString;
+                    if (hour < 10) hourString = "0" + hour;
+                    else hourString = String.valueOf(hour);
+                    if(minute < 10) minString = "0" + minute;
+                    else minString = String.valueOf(minute);
+                    time.setText(hourString + ":" + minString);
+                }, mHour, mMinute, false);
         timePickerDialog.show();
     }
 
@@ -104,12 +113,7 @@ public class NewGlValueActivity extends AppCompatActivity {
             View popupView = LayoutInflater.from(mContext).inflate(R.layout.popup_layout, null);
             mPopUpWindow = new PopupWindow(popupView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
             Button close_btn = popupView.findViewById(R.id.popup_btn);
-            close_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mPopUpWindow.dismiss();
-                }
-            });
+            close_btn.setOnClickListener(view1 -> mPopUpWindow.dismiss());
             mPopUpWindow.showAtLocation(view, Gravity.CENTER,0,0);
         } else {
 

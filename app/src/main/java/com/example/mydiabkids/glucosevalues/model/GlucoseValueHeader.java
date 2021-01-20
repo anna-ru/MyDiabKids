@@ -6,7 +6,7 @@ import com.thoughtbot.expandablecheckrecyclerview.models.SingleCheckExpandableGr
 
 import java.util.List;
 
-public class GlucoseValueHeader extends SingleCheckExpandableGroup {
+public class GlucoseValueHeader extends SingleCheckExpandableGroup implements Comparable<GlucoseValueHeader>{
     public GlucoseValueHeader(String title, List<GlucoseValueDetails> items) {
         super(title, items);
     }
@@ -36,4 +36,9 @@ public class GlucoseValueHeader extends SingleCheckExpandableGroup {
             return new GlucoseValueHeader[size];
         }
     };
+
+    @Override
+    public int compareTo(GlucoseValueHeader glucoseValueHeader) {
+        return getTitle().compareTo(glucoseValueHeader.getTitle());
+    }
 }

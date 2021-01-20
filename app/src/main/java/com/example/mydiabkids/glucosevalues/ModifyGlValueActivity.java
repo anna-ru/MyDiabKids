@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.mydiabkids.R;
 
@@ -31,11 +32,12 @@ public class ModifyGlValueActivity extends AppCompatActivity {
     public static final String MODIFY_INSULIN = "com.example.android.MODIFY_INSULIN";
     public static final String MODIFY_TYPE = "com.example.android.MODIFY_TYPE";
     public static final String MODIFY_NOTE = "com.example.android.MODIFY_NOTE";
+    public static final String CHILD_INDEX = "com.example.android.CHILD_INDEX";
 
     private TextView date, time;
     private Spinner eating_spinner, type_spinner;
     private EditText gl_value, insulin, note;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int mYear, mMonth, mDay, mHour, mMinute, childInd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class ModifyGlValueActivity extends AppCompatActivity {
         type_spinner.setAdapter(adapter2);
 
         Intent intent = getIntent();
+        childInd = intent.getIntExtra(CHILD_INDEX, 0);
         String dateTxt, timeTxt;
         dateTxt = intent.getStringExtra(MODIFY_DATE);
         timeTxt = intent.getStringExtra(MODIFY_TIME);
@@ -85,19 +88,9 @@ public class ModifyGlValueActivity extends AppCompatActivity {
         insulin.setText(String.valueOf(intent.getDoubleExtra(MODIFY_INSULIN, 0)));
         note.setText(intent.getStringExtra(MODIFY_NOTE));
 
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDatePicker(view);
-            }
-        });
+        date.setOnClickListener(this::showDatePicker);
 
-        time.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showTimePicker(view);
-            }
-        });
+        time.setOnClickListener(this::showTimePicker);
     }
 
     public void showDatePicker(View view) {
@@ -108,8 +101,16 @@ public class ModifyGlValueActivity extends AppCompatActivity {
     }
 
     public void showTimePicker(View view) {
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                (view1, hourOfDay, minute) -> time.setText(hourOfDay + ":" + minute), mHour, mMinute, false);
+        TimePickerDialog timePickerDialog = /*new TimePickerDialog(this,
+                (view1, hourOfDay, minute) -> time.setText(hourOfDay + ":" + minute), mHour, mMinute, false);*/
+                new TimePickerDialog(this, (timePicker, hour, minute) -> {
+                    String hourString, minString;
+                    if (hour < 10) hourString = "0" + hour;
+                    else hourString = String.valueOf(hour);
+                    if(minute < 10) minString = "0" + minute;
+                    else minString = String.valueOf(minute);
+                    time.setText(hourString + ":" + minString);
+                }, mHour, mMinute, false);
         timePickerDialog.show();
     }
 
@@ -131,6 +132,7 @@ public class ModifyGlValueActivity extends AppCompatActivity {
         replyIntent.putExtra(MODIFY_EATING, eatingTxt);
         replyIntent.putExtra(MODIFY_TYPE, typeTxt);
         replyIntent.putExtra(MODIFY_VALUE, value);
+        replyIntent.putExtra(CHILD_INDEX, childInd);
 
         setResult(RESULT_OK, replyIntent);
         finish();
