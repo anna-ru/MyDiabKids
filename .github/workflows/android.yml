@@ -23,6 +23,12 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
     - name: Run all unit tests
+      env:
+        influxdb_ip: ${{secrets.INFLUXDB_IP}}
+        grafana_ip: ${{secrets.GRAFANA_IP}}
+        token: ${{secrets.TOKEN}}
+        bucket: ${{secrets.BUCKET}}
+        org: ${{secrets.ORG}}
       run: ./gradlew test --stacktrace
       working-directory: ./
     
@@ -46,6 +52,12 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
     - name: Build the project
+      env:
+        influxdb_ip: ${{secrets.INFLUXDB_IP}}
+        grafana_ip: ${{secrets.GRAFANA_IP}}
+        token: ${{secrets.TOKEN}}
+        bucket: ${{secrets.BUCKET}}
+        org: ${{secrets.ORG}}
       run: ./gradlew build --stacktrace
       working-directory: ./
       
@@ -64,6 +76,12 @@ jobs:
       run: chmod +x ./gradlew
       
     - name: Generate APK
+      env:
+        influxdb_ip: ${{secrets.INFLUXDB_IP}}
+        grafana_ip: ${{secrets.GRAFANA_IP}}
+        token: ${{secrets.TOKEN}}
+        bucket: ${{secrets.BUCKET}}
+        org: ${{secrets.ORG}}
       run: ./gradlew assembleRelease --stacktrace
       working-directory: ./
       
